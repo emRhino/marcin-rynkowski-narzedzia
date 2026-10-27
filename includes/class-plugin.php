@@ -34,10 +34,12 @@ final class Plugin {
 		require_once DIR . 'includes/wstazki/class-ribbons.php';
 		require_once DIR . 'includes/wstazki/class-ribbon-admin.php';
 		require_once DIR . 'includes/wstazki/class-ribbon-product-tab.php';
+		require_once DIR . 'includes/wstazki/class-ribbon-frontend.php';
 
 		Ribbons::register();
 		Ribbon_Admin::register();
 		Ribbon_Product_Tab::register();
+		Ribbon_Frontend::register();
 	}
 
 	/**
