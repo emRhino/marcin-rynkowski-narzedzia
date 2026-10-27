@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Marcin Rynkowski – narzędzia
  * Description:       Zmiany wyglądu, opcje i funkcje dla sklepów WooCommerce na Blocksy, Stackable i ACF.
- * Version:           0.1.0
+ * Version:           0.1.1
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  woocommerce
@@ -19,7 +19,7 @@ namespace Rynkowski\Narzedzia;
 
 defined( 'ABSPATH' ) || exit;
 
-const VERSION = '0.1.0';
+const VERSION = '0.1.1';
 const FILE    = __FILE__;
 define( 'Rynkowski\Narzedzia\DIR', plugin_dir_path( __FILE__ ) );
 define( 'Rynkowski\Narzedzia\URL', plugin_dir_url( __FILE__ ) );
