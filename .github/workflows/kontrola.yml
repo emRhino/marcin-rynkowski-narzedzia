@@ -44,3 +44,7 @@ jobs:
 
       - name: Testy JS z pełnym pokryciem
         run: npx vitest run --coverage
+
+      # Paczka budowana tym samym skryptem co przy wydaniu: błąd pakowania wychodzi przed tagiem.
+      - name: Budowa i kontrola zipa
+        run: bin/zbuduj-zip.sh build

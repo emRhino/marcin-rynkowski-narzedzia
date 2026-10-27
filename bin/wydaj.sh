@@ -82,29 +82,11 @@ czekaj_na_workflow() {
 	[ "$wynik" = 'success' ] || blad "workflow $workflow zakończony: ${wynik:-brak wyniku w ${LIMIT_CI}s} (https://github.com/$REPO/actions/runs/$id)"
 }
 
-# Pobiera zip z wydania $TAG i sprawdza: folder, obie wersje, vendor, brak plików deweloperskich, autoload.
+# Pobiera zip z wydania $TAG i sprawdza go tym samym skryptem co CI (bin/sprawdz-zip.sh).
 sprawdz_zip() {
 	krok "Sprawdzam zip z wydania"
 	cicho timeout 120 gh release download "$TAG" --repo "$REPO" --pattern "$SLUG.zip" --dir "$TYMCZASOWY" || blad "nie udało się pobrać $SLUG.zip"
-	cicho unzip -q "$TYMCZASOWY/$SLUG.zip" -d "$TYMCZASOWY/zip"
-	local KORZEN="$TYMCZASOWY/zip/$SLUG" ZBEDNE
-	[ "$(ls "$TYMCZASOWY/zip")" = "$SLUG" ] || blad "zip ma inny folder główny niż $SLUG"
-	[ "$(grep -Po '^\s*\*\s*Version:\s*\K\S+' "$KORZEN/$PLIK_GLOWNY")" = "$WERSJA" ] || blad "zip ma inną wersję w nagłówku"
-	[ "$(grep -Po "const VERSION\s*= '\K[^']+" "$KORZEN/$PLIK_KLASY")" = "$WERSJA" ] || blad "zip ma inną wersję w klasie Plugin"
-	[ -f "$KORZEN/vendor/autoload.php" ] || blad "w zipie brakuje vendor/autoload.php"
-	ZBEDNE="$(cd "$KORZEN" && find . -path ./vendor -prune -o \( -name tests -o -name .github -o -name composer.json -o -name package.json -o -name phpunit.xml -o -name phpcs.xml -o -name phpstan.neon -o -name bin -o -name README.md \) -print)"
-	[ -z "$ZBEDNE" ] || blad "w zipie są pliki deweloperskie: $ZBEDNE"
-	# shellcheck disable=SC2016 # zmienne PHP, nie powłoki
-	php -r '
-		define( "ABSPATH", "/" );
-		require $argv[1] . "/vendor/autoload.php";
-		foreach ( array( "Rynkowski\\Narzedzia\\Plugin", "YahnisElsts\\PluginUpdateChecker\\v5\\PucFactory" ) as $klasa ) {
-			if ( ! class_exists( $klasa ) ) {
-				fwrite( STDERR, "brak klasy $klasa\n" );
-				exit( 1 );
-			}
-		}
-	' "$KORZEN" >>"$DZIENNIK" 2>&1 || blad "autoload w zipie nie ładuje rdzenia albo PUC"
+	cicho bin/sprawdz-zip.sh "$TYMCZASOWY/$SLUG.zip" "$WERSJA" || blad "zip z wydania $TAG nie przeszedł kontroli"
 }
 
 # --- Argumenty ---

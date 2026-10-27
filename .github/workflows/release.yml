@@ -33,13 +33,9 @@ jobs:
           echo "tag=$TAG nagłówek=$HEADER stała=$CONST"
           [ "$TAG" = "$HEADER" ] && [ "$TAG" = "$CONST" ]
 
-      - name: Budowa zipa
-        run: |
-          composer install --no-dev --optimize-autoloader --no-interaction --no-progress
-          mkdir -p "build/$SLUG"
-          git archive HEAD | tar -x -C "build/$SLUG"
-          cp -r vendor "build/$SLUG/"
-          (cd build && zip -rq "$SLUG.zip" "$SLUG")
+      # Ten sam skrypt co lokalnie; zip jest sprawdzany przed publikacją (bin/sprawdz-zip.sh).
+      - name: Budowa i kontrola zipa
+        run: bin/zbuduj-zip.sh build
 
       - name: Wydanie na GitHubie
         env:
