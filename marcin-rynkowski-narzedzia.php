@@ -34,6 +34,11 @@ add_action(
 	}
 );
 
+if ( is_readable( DIR . 'vendor/autoload.php' ) ) {
+	require_once DIR . 'vendor/autoload.php';
+}
 require_once DIR . 'includes/class-plugin.php';
+require_once DIR . 'includes/class-updater.php';
 
+Updater::register();
 add_action( 'plugins_loaded', array( Plugin::class, 'init' ) );

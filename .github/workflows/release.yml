@@ -1,0 +1,49 @@
+name: Wydanie
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    env:
+      SLUG: marcin-rynkowski-narzedzia
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+
+      - name: Wersja z tagu zgodna z nagłówkiem wtyczki
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          HEADER=$(grep -Po '^\s*\*\s*Version:\s*\K\S+' "$SLUG.php")
+          CONST=$(grep -Po "^const VERSION = '\K[^']+" "$SLUG.php")
+          echo "tag=$TAG nagłówek=$HEADER stała=$CONST"
+          [ "$TAG" = "$HEADER" ] && [ "$TAG" = "$CONST" ]
+
+      - name: Kontrola kodu
+        run: |
+          composer install --no-interaction --no-progress
+          vendor/bin/phpcs
+          vendor/bin/phpstan analyse --no-progress --memory-limit=1G
+
+      - name: Budowa zipa
+        run: |
+          composer install --no-dev --optimize-autoloader --no-interaction --no-progress
+          mkdir -p "build/$SLUG"
+          git archive HEAD | tar -x -C "build/$SLUG"
+          cp -r vendor "build/$SLUG/"
+          (cd build && zip -rq "$SLUG.zip" "$SLUG")
+
+      - name: Wydanie na GitHubie
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" "build/$SLUG.zip" --title "$GITHUB_REF_NAME" --generate-notes
