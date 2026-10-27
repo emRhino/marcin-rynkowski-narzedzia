@@ -30,6 +30,14 @@ final class Plugin {
 			);
 			return;
 		}
+
+		require_once DIR . 'includes/wstazki/class-ribbons.php';
+		require_once DIR . 'includes/wstazki/class-ribbon-admin.php';
+		require_once DIR . 'includes/wstazki/class-ribbon-product-tab.php';
+
+		Ribbons::register();
+		Ribbon_Admin::register();
+		Ribbon_Product_Tab::register();
 	}
 
 	/**

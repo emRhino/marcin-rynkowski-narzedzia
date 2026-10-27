@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || exit;
 
 const VERSION = '0.1.1';
 const FILE    = __FILE__;
-define( 'Rynkowski\Narzedzia\DIR', plugin_dir_path( __FILE__ ) );
+const DIR     = __DIR__ . '/';
 define( 'Rynkowski\Narzedzia\URL', plugin_dir_url( __FILE__ ) );
 
 // Zgodność z HPOS (tabele zamówień WooCommerce).
