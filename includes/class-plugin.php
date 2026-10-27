@@ -40,6 +40,14 @@ final class Plugin {
 		Ribbon_Admin::register();
 		Ribbon_Product_Tab::register();
 		Ribbon_Frontend::register();
+
+		require_once DIR . 'includes/kafle/class-tiles.php';
+		require_once DIR . 'includes/kafle/class-tile-admin.php';
+		require_once DIR . 'includes/kafle/class-tile-frontend.php';
+
+		Tiles::register();
+		Tile_Admin::register();
+		Tile_Frontend::register();
 	}
 
 	/**

@@ -132,7 +132,7 @@ final class Ribbon_Admin {
 	 * @param string $label    Etykieta.
 	 * @param int[]  $selected Zaznaczone ID.
 	 */
-	private static function render_term_select( string $taxonomy, string $name, string $label, array $selected ): void {
+	public static function render_term_select( string $taxonomy, string $name, string $label, array $selected ): void {
 		$terms = get_terms(
 			array(
 				'taxonomy'   => $taxonomy,
