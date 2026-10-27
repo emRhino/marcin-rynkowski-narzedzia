@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
  */
 final class Plugin {
 
-	const VERSION            = '0.5.0';
+	const VERSION            = '0.5.1';
 	const OPTION_DELETE_DATA = 'rynkowski_narzedzia_usun_dane';
 
 	/**
