@@ -34,7 +34,7 @@ final class Plugin {
 
 		add_action( 'before_woocommerce_init', array( self::class, 'declare_hpos' ) );
 		// Aktualizacje działają niezależnie od modułów, żeby poprawka zawsze mogła dotrzeć do sklepu.
-		add_action( 'plugins_loaded', array( Updater::class, 'register' ), 0 );
+		add_action( 'plugins_loaded', array( Updater::class, 'boot' ), 0 );
 		add_action( 'plugins_loaded', array( self::class, 'init' ) );
 	}
 

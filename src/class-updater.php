@@ -19,6 +19,16 @@ final class Updater {
 	const REPO = 'https://github.com/emRhino/marcin-rynkowski-narzedzia/';
 
 	/**
+	 * Callback hooka plugins_loaded.
+	 *
+	 * Bez parametrów celowo: do_action() bez argumentów przekazuje callbackowi pusty tekst,
+	 * a register() przyjmuje tylko fabrykę albo null (v0.4.0–0.5.0: krytyczny błąd).
+	 */
+	public static function boot(): void {
+		self::register();
+	}
+
+	/**
 	 * Rejestruje sprawdzanie aktualizacji.
 	 *
 	 * @param callable|null $factory Fabryka sprawdzacza; domyślnie PucFactory (parametr dla testów).

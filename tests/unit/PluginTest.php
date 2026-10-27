@@ -21,7 +21,7 @@ final class PluginTest extends TestCase {
 
 	public function test_boot_remembers_file_and_hooks_core(): void {
 		Actions\expectAdded( 'before_woocommerce_init' )->once()->with( array( Plugin::class, 'declare_hpos' ) );
-		Actions\expectAdded( 'plugins_loaded' )->once()->with( array( Updater::class, 'register' ), 0 );
+		Actions\expectAdded( 'plugins_loaded' )->once()->with( array( Updater::class, 'boot' ), 0 );
 		Actions\expectAdded( 'plugins_loaded' )->once()->with( array( Plugin::class, 'init' ) );
 
 		Plugin::boot( self::MAIN_FILE );
