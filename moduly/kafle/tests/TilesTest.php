@@ -21,14 +21,14 @@ final class TilesTest extends TestCase {
 		Tiles::register();
 	}
 
-	public function test_post_type_is_private_and_lives_in_woocommerce_menu(): void {
+	public function test_post_type_is_private_and_lives_in_tools_menu(): void {
 		Functions\expect( 'register_post_type' )
 			->once()
 			->with(
 				Tiles::POST_TYPE,
 				\Mockery::on(
 					static fn( array $args ): bool => false === $args['public']
-						&& 'woocommerce' === $args['show_in_menu']
+						&& 'rynkowski-narzedzia' === $args['show_in_menu']
 						&& 'product' === $args['capability_type']
 						&& 'Kafle promocyjne' === $args['labels']['name']
 				)

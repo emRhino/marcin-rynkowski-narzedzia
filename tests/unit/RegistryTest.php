@@ -59,6 +59,8 @@ final class RegistryTest extends TestCase {
 
 		$this->assertSame( array( 'register:alfa' ), Fake_Module::$log );
 		$this->assertSame( array( 'beta' => array( 'Blocksy' ) ), $registry->missing() );
+		// Aktywne są tylko moduły, które naprawdę wystartowały.
+		$this->assertSame( array( 'alfa' ), array_keys( $registry->active() ) );
 	}
 
 	public function test_boot_skips_disabled_modules(): void {
@@ -67,6 +69,7 @@ final class RegistryTest extends TestCase {
 
 		$this->assertSame( array(), Fake_Module::$log );
 		$this->assertSame( array(), $registry->missing() );
+		$this->assertSame( array(), $registry->active() );
 	}
 
 	public function test_first_run_sets_latest_version_without_migrations(): void {

@@ -7,6 +7,8 @@
 
 namespace Rynkowski\Narzedzia\Moduly\Kafle;
 
+use Rynkowski\Narzedzia\Settings_Page;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -83,7 +85,7 @@ final class Tiles {
 				),
 				'public'          => false,
 				'show_ui'         => true,
-				'show_in_menu'    => 'woocommerce',
+				'show_in_menu'    => Settings_Page::SLUG,
 				'show_in_rest'    => false,
 				'supports'        => array( 'title' ),
 				'capability_type' => 'product',

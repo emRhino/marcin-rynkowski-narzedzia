@@ -78,7 +78,7 @@ final class Ribbon_Product_Tab {
 						</tbody>
 					</table>
 				<?php endif; ?>
-				<p class="description"><?php esc_html_e( 'Wstążki przypisujesz w WooCommerce → Wstążki.', 'marcin-rynkowski-narzedzia' ); ?></p>
+				<p class="description"><?php esc_html_e( 'Wstążki przypisujesz w Narzędzia → Wstążki.', 'marcin-rynkowski-narzedzia' ); ?></p>
 			</div>
 		</div>
 		<?php

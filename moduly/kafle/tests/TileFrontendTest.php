@@ -6,6 +6,7 @@ namespace Rynkowski\Narzedzia\Moduly\Kafle\Tests;
 use Brain\Monkey\Actions;
 use Brain\Monkey\Functions;
 use Rynkowski\Narzedzia\Moduly\Kafle\Tile_Frontend;
+use Rynkowski\Narzedzia\Moduly\Kafle\Tile_Settings;
 use Rynkowski\Narzedzia\Plugin;
 use Rynkowski\Narzedzia\Tests\TestCase;
 
@@ -238,10 +239,61 @@ final class TileFrontendTest extends TestCase {
 		Functions\when( 'plugins_url' )->alias( static fn( string $path, string $file ): string => 'https://sklep.test/' . basename( dirname( $file ) ) . '/' . $path );
 		Functions\expect( 'wp_register_style' )->once()->with( 'rynkowski-kafle', false, array(), Plugin::VERSION );
 		Functions\expect( 'wp_enqueue_style' )->once()->with( 'rynkowski-kafle' );
-		Functions\expect( 'wp_add_inline_style' )->once()->with( 'rynkowski-kafle', \Mockery::pattern( '/^\.rynkowski-kafel\{/' ) );
+		// Domyślnie: 288 px wysokości i tło w kolorze motywu, jak przed ustawieniami.
+		Functions\expect( 'wp_add_inline_style' )->once()->with(
+			'rynkowski-kafle',
+			\Mockery::on(
+				static fn( string $css ): bool => str_starts_with( $css, '.rynkowski-kafel{' )
+					&& str_contains( $css, 'min-height:288px;' )
+					&& str_contains( $css, 'background:var(--kafel-bg,var(--theme-palette-color-1,#000));' )
+			)
+		);
 		Functions\expect( 'wp_register_script' )->once()->with( 'rynkowski-kafle', 'https://sklep.test/kafle/assets/kafle.js', array(), Plugin::VERSION, true );
-		Functions\expect( 'wp_localize_script' )->once()->with( 'rynkowski-kafle', 'rynkowskiKafle', array( 'zatrzymaj' => 'Zatrzymaj wideo', 'wznow' => 'Wznów wideo' ) );
+		Functions\expect( 'wp_localize_script' )->once()->with( 'rynkowski-kafle', 'rynkowskiKafle', array( 'zatrzymaj' => 'Zatrzymaj wideo', 'odtworz' => 'Odtwórz wideo' ) );
 
 		Tile_Frontend::enqueue();
+	}
+
+	public function test_styles_use_height_and_background_from_settings(): void {
+		Functions\when( 'plugins_url' )->justReturn( 'x' );
+		Functions\when( 'wp_register_style' )->justReturn( true );
+		Functions\when( 'wp_enqueue_style' )->justReturn( null );
+		Functions\when( 'wp_register_script' )->justReturn( true );
+		Functions\when( 'wp_localize_script' )->justReturn( true );
+		$this->options[ Tile_Settings::OPTION ] = array( 'min_wysokosc' => '400', 'kolor_tla' => '#aabbcc' );
+		Functions\expect( 'wp_add_inline_style' )->once()->with(
+			'rynkowski-kafle',
+			\Mockery::on( static fn( string $css ): bool => str_contains( $css, 'min-height:400px;' ) && str_contains( $css, 'background:var(--kafel-bg,#aabbcc);' ) )
+		);
+
+		Tile_Frontend::enqueue();
+	}
+
+	public function test_styles_ignore_css_injection_from_database(): void {
+		Functions\when( 'plugins_url' )->justReturn( 'x' );
+		Functions\when( 'wp_register_style' )->justReturn( true );
+		Functions\when( 'wp_enqueue_style' )->justReturn( null );
+		Functions\when( 'wp_register_script' )->justReturn( true );
+		Functions\when( 'wp_localize_script' )->justReturn( true );
+		$this->options[ Tile_Settings::OPTION ] = array( 'min_wysokosc' => '1px;}body{display:none', 'kolor_tla' => 'red;}body{' );
+		Functions\expect( 'wp_add_inline_style' )->once()->with(
+			'rynkowski-kafle',
+			\Mockery::on( static fn( string $css ): bool => str_contains( $css, 'min-height:288px;' ) && ! str_contains( $css, 'body{' ) )
+		);
+
+		Tile_Frontend::enqueue();
+	}
+
+	public function test_video_without_autostart_starts_paused_with_play_button(): void {
+		Functions\when( 'wp_get_attachment_url' )->justReturn( 'https://sklep.test/v.mp4' );
+		Functions\when( 'wp_enqueue_script' )->justReturn( null );
+		$this->options[ Tile_Settings::OPTION ] = array( 'autostart' => 'no' );
+		$this->tiles( array( 1 => array( 'type' => 'video', 'video_id' => 31, 'position' => 1 ) ) );
+
+		$html = $this->loop( 1 );
+
+		$this->assertStringContainsString( '<video class="rynkowski-kafel__media" muted loop playsinline preload="metadata"><source', $html );
+		$this->assertStringNotContainsString( 'autoplay', $html );
+		$this->assertStringContainsString( '<button type="button" class="rynkowski-kafel__pauza" aria-pressed="true">Odtwórz wideo</button>', $html );
 	}
 }

@@ -3,7 +3,8 @@
 Grafika, wideo albo tekst na kolorowym tle w miejscu produktu na liście sklepu, kategorii i tagu.
 
 - **Wymaga:** WooCommerce.
-- **Panel:** WooCommerce → Kafle promocyjne (typ wpisu `rynkowski_kafel`).
+- **Panel:** Narzędzia → Kafle promocyjne (typ wpisu `rynkowski_kafel`).
+- **Ustawienia:** Narzędzia → Ustawienia → Kafle promocyjne (opcja `rynkowski_narzedzia_kafle`): minimalna wysokość (px), domyślny kolor tła kafla tekstowego, autostart wideo. Schemat w `src/class-tile-settings.php`.
 - **Front:** akcja `woocommerce_shop_loop` (archiwum, bez shortcode'ów). Pozycja = numer komórki siatki; kolizje stają jedna za drugą. Kafel z pozycją dalszą niż liczba produktów na stronie się nie pokazuje. Kategoria bez podkategorii.
 - **Wideo:** autoplay bez dźwięku, przycisk pauzy (WCAG 2.2.2), „ogranicz ruch” = start zatrzymany (`assets/kafle.js`).
 - **Dane (meta wpisu):** `_rynkowski_kafel_type` (`image`/`video`/`text`), `_link`, `_active`, `_on_shop`, `_categories`, `_tags`, `_position`, `_first_page_only`, `_image_id`, `_video_id`, `_poster_id`, `_heading`, `_description`, `_button`, `_bg_color`, `_text_color`.

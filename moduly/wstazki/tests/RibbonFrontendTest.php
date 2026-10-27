@@ -9,6 +9,7 @@ use Brain\Monkey\Functions;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use Rynkowski\Narzedzia\Moduly\Wstazki\Ribbon_Frontend;
+use Rynkowski\Narzedzia\Moduly\Wstazki\Ribbon_Settings;
 use Rynkowski\Narzedzia\Plugin;
 use Rynkowski\Narzedzia\Tests\TestCase;
 
@@ -131,11 +132,44 @@ final class RibbonFrontendTest extends TestCase {
 		);
 	}
 
-	public function test_enqueue_adds_stack_styles(): void {
+	public function test_enqueue_adds_stack_styles_with_default_gap(): void {
 		Functions\expect( 'wp_register_style' )->once()->with( 'rynkowski-wstazki', false, array(), Plugin::VERSION );
 		Functions\expect( 'wp_enqueue_style' )->once()->with( 'rynkowski-wstazki' );
-		Functions\expect( 'wp_add_inline_style' )->once()->with( 'rynkowski-wstazki', \Mockery::pattern( '/^\.rynkowski-wstazki-stos\{.*--has-container:relative;/' ) );
+		Functions\expect( 'wp_add_inline_style' )->once()->with( 'rynkowski-wstazki', \Mockery::pattern( '/^\.rynkowski-wstazki-stos\{.*gap:5px;--has-container:relative;/' ) );
 
 		Ribbon_Frontend::enqueue();
+	}
+
+	public function test_stack_gap_comes_from_settings(): void {
+		Functions\when( 'wp_register_style' )->justReturn( true );
+		Functions\when( 'wp_enqueue_style' )->justReturn( null );
+		$this->options[ Ribbon_Settings::OPTION ] = array( 'odstep' => '12' );
+		Functions\expect( 'wp_add_inline_style' )->once()->with( 'rynkowski-wstazki', \Mockery::pattern( '/gap:12px;/' ) );
+
+		Ribbon_Frontend::enqueue();
+	}
+
+	public function test_stack_gap_rejects_css_injection_from_database(): void {
+		Functions\when( 'wp_register_style' )->justReturn( true );
+		Functions\when( 'wp_enqueue_style' )->justReturn( null );
+		$this->options[ Ribbon_Settings::OPTION ] = array( 'odstep' => '5px;}body{display:none' );
+		Functions\expect( 'wp_add_inline_style' )->once()->with(
+			'rynkowski-wstazki',
+			\Mockery::on( static fn( string $css ): bool => str_contains( $css, 'gap:5px;' ) && ! str_contains( $css, 'body{' ) )
+		);
+
+		Ribbon_Frontend::enqueue();
+	}
+
+	public function test_fixed_shape_from_settings_overrides_blocksy(): void {
+		$GLOBALS['product'] = new \WC_Product( 5 );
+		Functions\expect( 'blocksy_get_theme_mod' )->never();
+		$this->options[ Ribbon_Settings::OPTION ] = array( 'ksztalt' => 'type-1' );
+		$this->ribbons( array( 1 => array( 'text' => 'A', 'active' => 'yes', 'products' => array( 5 ) ) ) );
+
+		$this->assertSame(
+			array( '<span class="ct-woo-badge-rynkowski" data-shape="type-1">A</span>' ),
+			Ribbon_Frontend::add_badges( array() )
+		);
 	}
 }

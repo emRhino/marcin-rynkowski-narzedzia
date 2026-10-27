@@ -111,7 +111,11 @@ final class Ribbon_Frontend {
 	 * @param array{text: string, text_color: string, bg_color: string} $ribbon Dane wstążki.
 	 */
 	private static function badge_html( array $ribbon ): string {
-		$shape = function_exists( 'blocksy_get_theme_mod' ) ? blocksy_get_theme_mod( 'sale_badge_shape', 'type-2' ) : 'type-2';
+		// Kształt z ustawień modułu; „blocksy” = taki sam jak odznaki motywu.
+		$shape = Ribbon_Settings::get( 'ksztalt' );
+		if ( 'blocksy' === $shape ) {
+			$shape = function_exists( 'blocksy_get_theme_mod' ) ? blocksy_get_theme_mod( 'sale_badge_shape', 'type-2' ) : 'type-2';
+		}
 
 		// Kolory sprawdzane ponownie przy wypisaniu, nie tylko przy zapisie.
 		$style      = '';
@@ -140,7 +144,7 @@ final class Ribbon_Frontend {
 		wp_enqueue_style( 'rynkowski-wstazki' );
 		wp_add_inline_style(
 			'rynkowski-wstazki',
-			'.' . self::STACK_CLASS . '{position:absolute;z-index:2;top:var(--badge-top,15px);inset-inline-start:var(--badge-left,15px);display:flex;flex-direction:column;align-items:flex-start;gap:5px;--has-container:relative;pointer-events:none;}'
+			'.' . self::STACK_CLASS . '{position:absolute;z-index:2;top:var(--badge-top,15px);inset-inline-start:var(--badge-left,15px);display:flex;flex-direction:column;align-items:flex-start;gap:' . (int) Ribbon_Settings::get( 'odstep' ) . 'px;--has-container:relative;pointer-events:none;}'
 		);
 	}
 }

@@ -30,7 +30,8 @@
     "autoload-dev": {
         "classmap": [
             "tests/stubs/",
-            "tests/fixtures/class-fake-module.php"
+            "tests/fixtures/class-fake-module.php",
+            "tests/fixtures/class-fake-settings-module.php"
         ]
     },
     "scripts": {

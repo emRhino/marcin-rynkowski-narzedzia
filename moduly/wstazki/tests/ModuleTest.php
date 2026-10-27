@@ -6,7 +6,9 @@ namespace Rynkowski\Narzedzia\Moduly\Wstazki\Tests;
 use Brain\Monkey\Actions;
 use Brain\Monkey\Filters;
 use Brain\Monkey\Functions;
+use Rynkowski\Narzedzia\Has_Settings;
 use Rynkowski\Narzedzia\Moduly\Wstazki\Module;
+use Rynkowski\Narzedzia\Moduly\Wstazki\Ribbon_Settings;
 use Rynkowski\Narzedzia\Moduly\Wstazki\Ribbons;
 use Rynkowski\Narzedzia\Tests\TestCase;
 
@@ -42,10 +44,27 @@ final class ModuleTest extends TestCase {
 		( new Module() )->register();
 	}
 
-	public function test_uninstall_deletes_ribbons(): void {
+	public function test_uninstall_deletes_ribbons_and_settings(): void {
 		Functions\expect( 'get_posts' )->once()->with( \Mockery::on( static fn( array $args ): bool => Ribbons::POST_TYPE === $args['post_type'] ) )->andReturn( array( 4 ) );
 		Functions\expect( 'wp_delete_post' )->once()->with( 4, true );
+		$this->options[ Ribbon_Settings::OPTION ] = array( 'odstep' => 8 );
 
 		( new Module() )->uninstall();
+
+		$this->assertArrayNotHasKey( Ribbon_Settings::OPTION, $this->options );
+	}
+
+	public function test_settings_tab_describes_ribbon_settings(): void {
+		$module = new Module();
+
+		$this->assertInstanceOf( Has_Settings::class, $module );
+		$this->assertSame(
+			array(
+				'title'  => 'Wstążki',
+				'option' => Ribbon_Settings::OPTION,
+				'fields' => Ribbon_Settings::fields(),
+			),
+			$module->settings_tab()
+		);
 	}
 }

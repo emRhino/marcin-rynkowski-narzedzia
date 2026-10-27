@@ -7,6 +7,8 @@
 
 namespace Rynkowski\Narzedzia\Moduly\Wstazki;
 
+use Rynkowski\Narzedzia\Settings_Page;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
@@ -64,7 +66,7 @@ final class Ribbons {
 				),
 				'public'          => false,
 				'show_ui'         => true,
-				'show_in_menu'    => 'woocommerce',
+				'show_in_menu'    => Settings_Page::SLUG,
 				'show_in_rest'    => false,
 				'supports'        => array( 'title' ),
 				'capability_type' => 'product',

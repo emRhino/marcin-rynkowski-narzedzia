@@ -6,7 +6,7 @@
 
 	function ustawPrzycisk( przycisk, zatrzymane ) {
 		przycisk.setAttribute( 'aria-pressed', zatrzymane ? 'true' : 'false' );
-		przycisk.textContent = zatrzymane ? rynkowskiKafle.wznow : rynkowskiKafle.zatrzymaj;
+		przycisk.textContent = zatrzymane ? rynkowskiKafle.odtworz : rynkowskiKafle.zatrzymaj;
 	}
 
 	function podepnij( kafel ) {

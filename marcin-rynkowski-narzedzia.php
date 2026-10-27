@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Marcin Rynkowski – narzędzia
- * Description:       Moduły dla sklepów WooCommerce na Blocksy, Stackable i ACF. Włączasz je w WooCommerce → Narzędzia.
+ * Description:       Moduły dla sklepów WooCommerce na Blocksy, Stackable i ACF. Włączasz je w Narzędzia → Ustawienia.
  * Version:           0.4.0
  * Requires at least: 6.5
  * Requires PHP:      8.1

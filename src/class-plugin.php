@@ -71,7 +71,7 @@ final class Plugin {
 		$registry->discover();
 		$registry->boot();
 
-		( new Modules_Page( $registry ) )->register();
+		( new Settings_Page( $registry ) )->register();
 
 		$missing = $registry->missing();
 		if ( $missing ) {

@@ -29,7 +29,7 @@ window.MutationObserver = class extends PrawdziwyObserwator {
 
 describe( 'kafle.js', () => {
 	beforeEach( () => {
-		window.rynkowskiKafle = { zatrzymaj: 'Zatrzymaj wideo', wznow: 'Wznów wideo' };
+		window.rynkowskiKafle = { zatrzymaj: 'Zatrzymaj wideo', odtworz: 'Odtwórz wideo' };
 		// jsdom nie odtwarza wideo; zaślepki pilnują stanu „paused”.
 		Object.defineProperty( HTMLMediaElement.prototype, 'paused', {
 			configurable: true,
@@ -59,7 +59,7 @@ describe( 'kafle.js', () => {
 		przycisk.click();
 		expect( wideo.paused ).toBe( true );
 		expect( przycisk.getAttribute( 'aria-pressed' ) ).toBe( 'true' );
-		expect( przycisk.textContent ).toBe( 'Wznów wideo' );
+		expect( przycisk.textContent ).toBe( 'Odtwórz wideo' );
 
 		przycisk.click();
 		expect( wideo.paused ).toBe( false );
@@ -74,7 +74,24 @@ describe( 'kafle.js', () => {
 
 		expect( wideo.hasAttribute( 'autoplay' ) ).toBe( false );
 		expect( wideo.paused ).toBe( true );
-		expect( document.querySelector( 'button' ).textContent ).toBe( 'Wznów wideo' );
+		expect( document.querySelector( 'button' ).textContent ).toBe( 'Odtwórz wideo' );
+	} );
+
+	it( 'bez autostartu pierwsze kliknięcie uruchamia wideo', async () => {
+		// Tak renderuje PHP przy wyłączonym autostarcie: bez autoplay, przycisk „Odtwórz”.
+		document.body.innerHTML = KAFEL.replace( ' autoplay', '' )
+			.replace( 'aria-pressed="false">Zatrzymaj wideo', 'aria-pressed="true">Odtwórz wideo' );
+		const wideo = document.querySelector( 'video' );
+		wideo._zatrzymane = true;
+		await wczytaj();
+		const przycisk = document.querySelector( 'button' );
+
+		przycisk.click();
+
+		expect( HTMLMediaElement.prototype.play ).toHaveBeenCalledTimes( 1 );
+		expect( wideo.paused ).toBe( false );
+		expect( przycisk.getAttribute( 'aria-pressed' ) ).toBe( 'false' );
+		expect( przycisk.textContent ).toBe( 'Zatrzymaj wideo' );
 	} );
 
 	it( 'działa w przeglądarce bez matchMedia', async () => {

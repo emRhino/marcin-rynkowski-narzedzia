@@ -8,13 +8,16 @@
 namespace Rynkowski\Narzedzia\Moduly\Kafle;
 
 use Rynkowski\Narzedzia\Cleanup;
+use Rynkowski\Narzedzia\Has_Settings;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
  * Moduł „Kafle promocyjne”: grafika, wideo albo tekst w siatce produktów.
+ *
+ * @phpstan-import-type SettingsTab from Has_Settings
  */
-final class Module implements \Rynkowski\Narzedzia\Module {
+final class Module implements \Rynkowski\Narzedzia\Module, Has_Settings {
 
 	/**
 	 * Slug modułu.
@@ -72,9 +75,24 @@ final class Module implements \Rynkowski\Narzedzia\Module {
 	}
 
 	/**
-	 * Usuwa wszystkie kafle.
+	 * Zakładka „Kafle promocyjne” w Narzędzia → Ustawienia.
+	 *
+	 * @return array Tytuł, nazwa opcji i pola.
+	 * @phpstan-return SettingsTab
+	 */
+	public function settings_tab(): array {
+		return array(
+			'title'  => $this->name(),
+			'option' => Tile_Settings::OPTION,
+			'fields' => Tile_Settings::fields(),
+		);
+	}
+
+	/**
+	 * Usuwa wszystkie kafle i ustawienia modułu.
 	 */
 	public function uninstall(): void {
 		Cleanup::delete_posts( Tiles::POST_TYPE );
+		delete_option( Tile_Settings::OPTION );
 	}
 }

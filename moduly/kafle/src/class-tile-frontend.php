@@ -139,17 +139,20 @@ final class Tile_Frontend {
 
 		switch ( $tile['type'] ) {
 			case 'video':
-				$poster = $tile['poster_id'] ? wp_get_attachment_image_url( $tile['poster_id'], 'woocommerce_single' ) : '';
-				$inner  = sprintf(
-					'<video class="rynkowski-kafel__media" autoplay muted loop playsinline preload="metadata"%s><source src="%s" type="video/mp4"></video>',
+				$poster    = $tile['poster_id'] ? wp_get_attachment_image_url( $tile['poster_id'], 'woocommerce_single' ) : '';
+				$autostart = 'yes' === Tile_Settings::get( 'autostart' );
+				$inner     = sprintf(
+					'<video class="rynkowski-kafel__media"%s muted loop playsinline preload="metadata"%s><source src="%s" type="video/mp4"></video>',
+					$autostart ? ' autoplay' : '',
 					$poster ? ' poster="' . esc_url( $poster ) . '"' : '',
 					esc_url( (string) wp_get_attachment_url( $tile['video_id'] ) )
 				);
-				$label  = $tile['poster_id'] ? (string) get_post_meta( $tile['poster_id'], '_wp_attachment_image_alt', true ) : '';
+				$label     = $tile['poster_id'] ? (string) get_post_meta( $tile['poster_id'], '_wp_attachment_image_alt', true ) : '';
 				// Przycisk poza linkiem: zatrzymanie ruchomej treści wymagane przez WCAG 2.2.2.
 				$extra = sprintf(
-					'<button type="button" class="rynkowski-kafel__pauza" aria-pressed="false">%s</button>',
-					esc_html__( 'Zatrzymaj wideo', 'marcin-rynkowski-narzedzia' )
+					'<button type="button" class="rynkowski-kafel__pauza" aria-pressed="%s">%s</button>',
+					$autostart ? 'false' : 'true',
+					$autostart ? esc_html__( 'Zatrzymaj wideo', 'marcin-rynkowski-narzedzia' ) : esc_html__( 'Odtwórz wideo', 'marcin-rynkowski-narzedzia' )
 				);
 				wp_enqueue_script( 'rynkowski-kafle' );
 				break;
@@ -222,7 +225,7 @@ final class Tile_Frontend {
 			'rynkowskiKafle',
 			array(
 				'zatrzymaj' => __( 'Zatrzymaj wideo', 'marcin-rynkowski-narzedzia' ),
-				'wznow'     => __( 'Wznów wideo', 'marcin-rynkowski-narzedzia' ),
+				'odtworz'   => __( 'Odtwórz wideo', 'marcin-rynkowski-narzedzia' ),
 			)
 		);
 	}
@@ -231,11 +234,16 @@ final class Tile_Frontend {
 	 * Style kafli.
 	 */
 	private static function css(): string {
-		return '.rynkowski-kafel{position:relative;list-style:none;margin:0;min-height:18rem;overflow:hidden;}'
+		// Wartości z ustawień są zwalidowane (liczba w zakresie, kolor HEX), więc bezpieczne w CSS.
+		$min_height = (int) Tile_Settings::get( 'min_wysokosc' );
+		$bg         = sanitize_hex_color( (string) Tile_Settings::get( 'kolor_tla' ) );
+		$bg         = $bg ? $bg : 'var(--theme-palette-color-1,#000)';
+
+		return '.rynkowski-kafel{position:relative;list-style:none;margin:0;min-height:' . $min_height . 'px;overflow:hidden;}'
 			. '.rynkowski-kafel__wnetrze{position:absolute;inset:0;display:block;color:inherit;text-decoration:none;}'
 			. '.rynkowski-kafel__wnetrze:focus-visible{outline:3px solid currentColor;outline-offset:-6px;}'
 			. '.rynkowski-kafel__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}'
-			. '.rynkowski-kafel__tekst{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:12px;padding:24px;background:var(--kafel-bg,var(--theme-palette-color-1,#000));color:var(--kafel-color,#fff);}'
+			. '.rynkowski-kafel__tekst{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:12px;padding:24px;background:var(--kafel-bg,' . $bg . ');color:var(--kafel-color,#fff);}'
 			. '.rynkowski-kafel__naglowek{margin:0;color:inherit;font-size:1.5em;line-height:1.2;}'
 			. '.rynkowski-kafel__opis{margin:0;color:inherit;}'
 			. '.rynkowski-kafel__pauza{position:absolute;inset-inline-end:10px;bottom:10px;z-index:2;padding:6px 10px;border:0;border-radius:3px;background:rgba(0,0,0,.65);color:#fff;font-size:12px;line-height:1.2;cursor:pointer;}'

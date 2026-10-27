@@ -6,9 +6,9 @@ namespace Rynkowski\Narzedzia\Tests;
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 use Brain\Monkey\Actions;
 use Brain\Monkey\Functions;
-use Rynkowski\Narzedzia\Modules_Page;
 use Rynkowski\Narzedzia\Plugin;
 use Rynkowski\Narzedzia\Registry;
+use Rynkowski\Narzedzia\Settings_Page;
 use Rynkowski\Narzedzia\Updater;
 
 final class PluginTest extends TestCase {
@@ -43,7 +43,7 @@ final class PluginTest extends TestCase {
 		$this->boot( dirname( __DIR__, 2 ) . '/marcin-rynkowski-narzedzia.php' );
 		Functions\expect( 'load_plugin_textdomain' )->once()->with( 'marcin-rynkowski-narzedzia', false, 'marcin-rynkowski-narzedzia/languages' );
 		Functions\when( 'plugin_basename' )->justReturn( 'marcin-rynkowski-narzedzia/marcin-rynkowski-narzedzia.php' );
-		Actions\expectAdded( 'admin_menu' )->once()->with( \Mockery::on( fn( $cb ) => $cb[0] instanceof Modules_Page ), 99 );
+		Actions\expectAdded( 'admin_menu' )->once()->with( \Mockery::on( fn( $cb ) => $cb[0] instanceof Settings_Page ), 9 );
 		Actions\expectAdded( 'admin_notices' )->never();
 
 		Plugin::init();

@@ -5,7 +5,9 @@ namespace Rynkowski\Narzedzia\Moduly\Kafle\Tests;
 
 use Brain\Monkey\Actions;
 use Brain\Monkey\Functions;
+use Rynkowski\Narzedzia\Has_Settings;
 use Rynkowski\Narzedzia\Moduly\Kafle\Module;
+use Rynkowski\Narzedzia\Moduly\Kafle\Tile_Settings;
 use Rynkowski\Narzedzia\Moduly\Kafle\Tiles;
 use Rynkowski\Narzedzia\Tests\TestCase;
 
@@ -40,10 +42,27 @@ final class ModuleTest extends TestCase {
 		( new Module() )->register();
 	}
 
-	public function test_uninstall_deletes_tiles(): void {
+	public function test_uninstall_deletes_tiles_and_settings(): void {
 		Functions\expect( 'get_posts' )->once()->with( \Mockery::on( static fn( array $args ): bool => Tiles::POST_TYPE === $args['post_type'] ) )->andReturn( array( 4 ) );
 		Functions\expect( 'wp_delete_post' )->once()->with( 4, true );
+		$this->options[ Tile_Settings::OPTION ] = array( 'min_wysokosc' => 300 );
 
 		( new Module() )->uninstall();
+
+		$this->assertArrayNotHasKey( Tile_Settings::OPTION, $this->options );
+	}
+
+	public function test_settings_tab_describes_tile_settings(): void {
+		$module = new Module();
+
+		$this->assertInstanceOf( Has_Settings::class, $module );
+		$this->assertSame(
+			array(
+				'title'  => 'Kafle promocyjne',
+				'option' => Tile_Settings::OPTION,
+				'fields' => Tile_Settings::fields(),
+			),
+			$module->settings_tab()
+		);
 	}
 }

@@ -32,6 +32,13 @@ final class Registry {
 	private array $missing = array();
 
 	/**
+	 * Moduły uruchomione w tym żądaniu (włączone i z zależnościami).
+	 *
+	 * @var array<string, Module>
+	 */
+	private array $active = array();
+
+	/**
 	 * Tworzy rejestr dla folderu z modułami.
 	 *
 	 * @param string $dir Folder z podfolderami modułów.
@@ -103,7 +110,17 @@ final class Registry {
 
 			$this->migrate( $module );
 			$module->register();
+			$this->active[ $slug ] = $module;
 		}
+	}
+
+	/**
+	 * Moduły uruchomione w tym żądaniu.
+	 *
+	 * @return array<string, Module>
+	 */
+	public function active(): array {
+		return $this->active;
 	}
 
 	/**

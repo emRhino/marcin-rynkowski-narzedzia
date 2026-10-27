@@ -32,7 +32,7 @@ final class RibbonsTest extends TestCase {
 		Ribbons::register();
 	}
 
-	public function test_post_type_is_private_and_lives_in_woocommerce_menu(): void {
+	public function test_post_type_is_private_and_lives_in_tools_menu(): void {
 		Functions\expect( 'register_post_type' )
 			->once()
 			->with(
@@ -40,7 +40,7 @@ final class RibbonsTest extends TestCase {
 				\Mockery::on(
 					static fn( array $args ): bool => false === $args['public']
 						&& true === $args['show_ui']
-						&& 'woocommerce' === $args['show_in_menu']
+						&& 'rynkowski-narzedzia' === $args['show_in_menu']
 						&& 'product' === $args['capability_type']
 						&& array( 'title' ) === $args['supports']
 						&& 'Wstążki' === $args['labels']['name']
