@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name:       Marcin Rynkowski – narzędzia
- * Description:       Zmiany wyglądu, opcje i funkcje dla sklepów WooCommerce na Blocksy, Stackable i ACF.
- * Version:           0.3.0
+ * Description:       Moduły dla sklepów WooCommerce na Blocksy, Stackable i ACF. Włączasz je w WooCommerce → Narzędzia.
+ * Version:           0.4.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Requires Plugins:  woocommerce
@@ -19,26 +19,6 @@ namespace Rynkowski\Narzedzia;
 
 defined( 'ABSPATH' ) || exit;
 
-const VERSION = '0.3.0';
-const FILE    = __FILE__;
-const DIR     = __DIR__ . '/';
-define( 'Rynkowski\Narzedzia\URL', plugin_dir_url( __FILE__ ) );
+require_once __DIR__ . '/vendor/autoload.php';
 
-// Zgodność z HPOS (tabele zamówień WooCommerce).
-add_action(
-	'before_woocommerce_init',
-	static function () {
-		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
-			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', FILE, true );
-		}
-	}
-);
-
-if ( is_readable( DIR . 'vendor/autoload.php' ) ) {
-	require_once DIR . 'vendor/autoload.php';
-}
-require_once DIR . 'includes/class-plugin.php';
-require_once DIR . 'includes/class-updater.php';
-
-Updater::register();
-add_action( 'plugins_loaded', array( Plugin::class, 'init' ) );
+Plugin::boot( __FILE__ );

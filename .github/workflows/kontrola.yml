@@ -1,0 +1,46 @@
+name: Kontrola
+
+# Wspólne sprawdzenie kodu: przy każdym pushu na main i przed każdym wydaniem.
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  kontrola:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+          coverage: pcov
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Zależności
+        run: |
+          composer install --no-interaction --no-progress
+          npm ci --no-audit --no-fund
+
+      - name: Standardy i analiza statyczna
+        run: |
+          vendor/bin/phpcs
+          vendor/bin/phpstan analyse --no-progress --memory-limit=1G
+
+      - name: Testy PHP z pełnym pokryciem
+        run: |
+          php -d pcov.directory=. vendor/bin/phpunit --coverage-text --only-summary-for-coverage-text | tee pokrycie.txt
+          grep -qE '^\s+Lines:\s+100\.00%' pokrycie.txt || { echo "::error::Pokrycie linii PHP poniżej 100%"; exit 1; }
+
+      - name: Testy JS z pełnym pokryciem
+        run: npx vitest run --coverage

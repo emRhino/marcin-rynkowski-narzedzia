@@ -9,7 +9,11 @@ permissions:
   contents: write
 
 jobs:
-  release:
+  kontrola:
+    uses: ./.github/workflows/kontrola.yml
+
+  wydanie:
+    needs: kontrola
     runs-on: ubuntu-24.04
     env:
       SLUG: marcin-rynkowski-narzedzia
@@ -21,19 +25,13 @@ jobs:
           php-version: '8.3'
           tools: composer:v2
 
-      - name: Wersja z tagu zgodna z nagłówkiem wtyczki
+      - name: Wersja z tagu zgodna z nagłówkiem i klasą Plugin
         run: |
           TAG="${GITHUB_REF_NAME#v}"
           HEADER=$(grep -Po '^\s*\*\s*Version:\s*\K\S+' "$SLUG.php")
-          CONST=$(grep -Po "^const VERSION = '\K[^']+" "$SLUG.php")
+          CONST=$(grep -Po "const VERSION\s*= '\K[^']+" src/class-plugin.php)
           echo "tag=$TAG nagłówek=$HEADER stała=$CONST"
           [ "$TAG" = "$HEADER" ] && [ "$TAG" = "$CONST" ]
-
-      - name: Kontrola kodu
-        run: |
-          composer install --no-interaction --no-progress
-          vendor/bin/phpcs
-          vendor/bin/phpstan analyse --no-progress --memory-limit=1G
 
       - name: Budowa zipa
         run: |

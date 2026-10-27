@@ -2,6 +2,10 @@
 <ruleset name="wtyczki-wp">
 	<file>.</file>
 	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/coverage/*</exclude-pattern>
+	<!-- Testy mają własne zasady (PHPUnit, zaślepki); sprawdzamy kod wtyczki. -->
+	<exclude-pattern>*/tests/*</exclude-pattern>
 	<arg name="extensions" value="php"/>
 	<arg value="sp"/>
 
@@ -13,6 +17,14 @@
 	<rule ref="WordPress-Extra"/>
 	<rule ref="WordPress-Docs"/>
 	<rule ref="PHPCompatibilityWP"/>
+
+	<rule ref="WordPress.WP.Capabilities">
+		<properties>
+			<property name="custom_capabilities" type="array">
+				<element value="manage_woocommerce"/>
+			</property>
+		</properties>
+	</rule>
 
 	<rule ref="WordPress.WP.I18n">
 		<properties>

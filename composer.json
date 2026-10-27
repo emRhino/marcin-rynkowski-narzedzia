@@ -6,7 +6,9 @@
         "phpstan/phpstan": "^2.3",
         "szepeviktor/phpstan-wordpress": "^2.0",
         "php-stubs/woocommerce-stubs": "^11.2",
-        "php-stubs/acf-pro-stubs": "^6.8"
+        "php-stubs/acf-pro-stubs": "^6.8",
+        "phpunit/phpunit": "^11",
+        "brain/monkey": "^2.7"
     },
     "require": {
         "yahnis-elsts/plugin-update-checker": "^5.7"
@@ -15,5 +17,27 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": false
         }
+    },
+    "autoload": {
+        "classmap": [
+            "src/",
+            "moduly/"
+        ],
+        "exclude-from-classmap": [
+            "moduly/*/tests/"
+        ]
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/stubs/",
+            "tests/fixtures/class-fake-module.php"
+        ]
+    },
+    "scripts": {
+        "test": "phpunit",
+        "lint": [
+            "phpcs",
+            "phpstan analyse --no-progress --memory-limit=1G"
+        ]
     }
 }

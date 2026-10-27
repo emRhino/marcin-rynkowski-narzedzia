@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+	bootstrap="tests/bootstrap.php"
+	colors="true"
+	failOnRisky="true"
+	failOnWarning="true"
+	beStrictAboutOutputDuringTests="true"
+	cacheDirectory=".phpunit.cache">
+	<testsuites>
+		<testsuite name="rdzen">
+			<directory>tests/unit</directory>
+		</testsuite>
+		<testsuite name="moduly">
+			<directory>moduly/*/tests</directory>
+		</testsuite>
+	</testsuites>
+	<source>
+		<include>
+			<directory suffix=".php">src</directory>
+			<directory suffix=".php">moduly</directory>
+			<file>marcin-rynkowski-narzedzia.php</file>
+			<file>uninstall.php</file>
+		</include>
+		<exclude>
+			<directory>moduly/*/tests</directory>
+		</exclude>
+	</source>
+</phpunit>

@@ -3,5 +3,12 @@
 /.github export-ignore
 /composer.json export-ignore
 /composer.lock export-ignore
+/package.json export-ignore
+/package-lock.json export-ignore
+/vitest.config.js export-ignore
 /phpcs.xml export-ignore
 /phpstan.neon export-ignore
+/phpunit.xml export-ignore
+/tests export-ignore
+/moduly/*/tests export-ignore
+/moduly/*/README.md export-ignore

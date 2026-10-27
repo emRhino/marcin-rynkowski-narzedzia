@@ -5,7 +5,11 @@ parameters:
 	level: 6
 	paths:
 		- marcin-rynkowski-narzedzia.php
-		- includes
+		- uninstall.php
+		- src
+		- moduly
+	excludePaths:
+		- moduly/*/tests/*
 	scanFiles:
 		- vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
 		- vendor/php-stubs/acf-pro-stubs/acf-pro-stubs.php
