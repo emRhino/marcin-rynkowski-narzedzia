@@ -24,7 +24,7 @@ defined( 'ABSPATH' ) || exit;
  *     min?: int,
  *     max?: int,
  *     suffix?: string,
- *     options?: array<string, string>
+ *     options?: array<int|string, string>
  * }
  * @phpstan-type SettingsTab array{title: string, option: string, fields: SettingsField[]}
  */

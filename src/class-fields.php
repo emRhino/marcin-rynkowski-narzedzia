@@ -68,6 +68,46 @@ final class Fields {
 	}
 
 	/**
+	 * Wiersz tabeli formularza z wyszukiwarką produktów WooCommerce (wielokrotny wybór).
+	 *
+	 * @param string $name     Nazwa pola.
+	 * @param string $label    Etykieta.
+	 * @param int[]  $selected Wybrane ID produktów.
+	 * @param string $tip      Treść dymka pomocy.
+	 */
+	public static function product_select( string $name, string $label, array $selected, string $tip = '' ): void {
+		$id = 'rynkowski-' . str_replace( '_', '-', $name );
+		?>
+		<tr>
+			<th scope="row" class="titledesc"><?php self::label( $id, $label, $tip ); ?></th>
+			<td class="forminp">
+				<select id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>[]" class="wc-product-search" multiple style="width: 100%;" data-placeholder="<?php esc_attr_e( 'Wyszukaj produkt…', 'marcin-rynkowski-narzedzia' ); ?>" data-action="woocommerce_json_search_products">
+					<?php
+					foreach ( $selected as $product_id ) {
+						$product = wc_get_product( $product_id );
+						if ( $product ) {
+							printf( '<option value="%d" selected>%s</option>', (int) $product_id, esc_html( wp_strip_all_tags( $product->get_formatted_name() ) ) );
+						}
+					}
+					?>
+				</select>
+			</td>
+		</tr>
+		<?php
+	}
+
+	/**
+	 * Walidator: ID jest produktem.
+	 *
+	 * @return callable(int):bool
+	 */
+	public static function is_product(): callable {
+		return static function ( int $id ): bool {
+			return 'product' === get_post_type( $id );
+		};
+	}
+
+	/**
 	 * Lista ID z wysłanego formularza, tylko te przyjęte przez walidator.
 	 *
 	 * Wołający musi wcześniej sprawdzić nonce i uprawnienia.

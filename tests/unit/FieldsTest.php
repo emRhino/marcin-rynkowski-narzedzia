@@ -36,6 +36,27 @@ final class FieldsTest extends TestCase {
 		$this->assertStringContainsString( 'data-tip="Podpowiedź"', $html );
 	}
 
+	public function test_product_select_lists_saved_products_skips_deleted_and_escapes(): void {
+		Functions\when( 'wc_get_product' )->alias( static fn( int $id ) => 5 === $id ? new \WC_Product( 5, 'Torba <b>X</b> & co' ) : false );
+		Functions\when( 'wp_strip_all_tags' )->alias( 'strip_tags' );
+
+		$html = $this->capture( fn() => Fields::product_select( 'rynkowski_products', 'Produkty', array( 5, 6 ), 'Podpowiedź' ) );
+
+		$this->assertStringContainsString( '<label for="rynkowski-rynkowski-products">Produkty</label><span class="woocommerce-help-tip"', $html );
+		$this->assertStringContainsString( 'name="rynkowski_products[]" class="wc-product-search" multiple', $html );
+		$this->assertStringContainsString( 'data-action="woocommerce_json_search_products"', $html );
+		$this->assertStringContainsString( '<option value="5" selected>Torba X &amp; co</option>', $html );
+		$this->assertStringNotContainsString( 'value="6"', $html );
+	}
+
+	public function test_is_product_accepts_only_products(): void {
+		Functions\when( 'get_post_type' )->alias( static fn( int $id ) => 5 === $id ? 'product' : 'post' );
+		$validator = Fields::is_product();
+
+		$this->assertTrue( $validator( 5 ) );
+		$this->assertFalse( $validator( 6 ) );
+	}
+
 	public function test_label_escapes_and_adds_tip_only_when_given(): void {
 		$this->assertSame(
 			'<label for="a&quot;b">&lt;b&gt;Etykieta&lt;/b&gt;</label>',
