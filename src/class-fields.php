@@ -15,14 +15,30 @@ defined( 'ABSPATH' ) || exit;
 final class Fields {
 
 	/**
+	 * Etykieta pola z dymkiem pomocy „?” jak w ustawieniach WooCommerce.
+	 *
+	 * @param string $id    Id pola, do którego prowadzi etykieta.
+	 * @param string $label Etykieta.
+	 * @param string $tip   Treść dymka; pusta = bez dymka.
+	 */
+	public static function label( string $id, string $label, string $tip = '' ): void {
+		printf( '<label for="%s">%s</label>', esc_attr( $id ), esc_html( $label ) );
+
+		if ( '' !== $tip ) {
+			echo wc_help_tip( $tip ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wc_help_tip() escapuje treść (esc_attr).
+		}
+	}
+
+	/**
 	 * Wiersz tabeli formularza z wielokrotnym wyborem terminów taksonomii.
 	 *
 	 * @param string $taxonomy Taksonomia.
 	 * @param string $name     Nazwa pola.
 	 * @param string $label    Etykieta.
 	 * @param int[]  $selected Zaznaczone ID.
+	 * @param string $tip      Treść dymka pomocy.
 	 */
-	public static function term_select( string $taxonomy, string $name, string $label, array $selected ): void {
+	public static function term_select( string $taxonomy, string $name, string $label, array $selected, string $tip = '' ): void {
 		$terms = get_terms(
 			array(
 				'taxonomy'   => $taxonomy,
@@ -32,8 +48,8 @@ final class Fields {
 		$id    = 'rynkowski-' . $taxonomy;
 		?>
 		<tr>
-			<th scope="row"><label for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?></label></th>
-			<td>
+			<th scope="row" class="titledesc"><?php self::label( $id, $label, $tip ); ?></th>
+			<td class="forminp">
 				<select id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>[]" class="wc-enhanced-select" multiple style="width: 100%;">
 					<?php
 					foreach ( is_array( $terms ) ? $terms : array() as $term ) {

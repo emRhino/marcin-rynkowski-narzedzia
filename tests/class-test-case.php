@@ -111,6 +111,13 @@ abstract class TestCase extends Base {
 				return $result;
 			}
 		);
+		// Jak wc_help_tip() z WooCommerce: treść escapowana do atrybutów.
+		Functions\when( 'wc_help_tip' )->alias(
+			static function ( $tip ): string {
+				$tip = htmlspecialchars( (string) $tip, ENT_QUOTES );
+				return '<span class="woocommerce-help-tip" tabindex="0" aria-label="' . $tip . '" data-tip="' . $tip . '"></span>';
+			}
+		);
 		Functions\when( 'selected' )->alias(
 			static function ( $selected, $current = true, bool $display = true ): string {
 				$result = (string) $selected === (string) $current ? " selected='selected'" : '';

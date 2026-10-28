@@ -7,6 +7,7 @@
 
 namespace Rynkowski\Narzedzia\Moduly\Kafle;
 
+use Rynkowski\Narzedzia\Admin_Screens;
 use Rynkowski\Narzedzia\Fields;
 use Rynkowski\Narzedzia\Plugin;
 
@@ -23,6 +24,7 @@ final class Tile_Admin {
 	 * Podpina akcje panelu.
 	 */
 	public static function register(): void {
+		Admin_Screens::register( Tiles::POST_TYPE );
 		add_action( 'add_meta_boxes_' . Tiles::POST_TYPE, array( self::class, 'add_meta_boxes' ) );
 		add_action( 'save_post_' . Tiles::POST_TYPE, array( self::class, 'save' ), 10, 2 );
 		add_action( 'admin_enqueue_scripts', array( self::class, 'enqueue' ) );
@@ -55,8 +57,8 @@ final class Tile_Admin {
 		?>
 		<table class="form-table" role="presentation">
 			<tr>
-				<th scope="row"><?php esc_html_e( 'Typ', 'marcin-rynkowski-narzedzia' ); ?></th>
-				<td>
+				<th scope="row" class="titledesc"><?php esc_html_e( 'Typ', 'marcin-rynkowski-narzedzia' ); ?></th>
+				<td class="forminp">
 					<fieldset>
 						<?php foreach ( $types as $value => $label ) : ?>
 							<label style="margin-right: 16px;">
@@ -68,10 +70,9 @@ final class Tile_Admin {
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="rynkowski-link"><?php esc_html_e( 'Link', 'marcin-rynkowski-narzedzia' ); ?></label></th>
-				<td>
-					<input type="url" id="rynkowski-link" name="rynkowski_link" class="regular-text" value="<?php echo esc_attr( $tile['link'] ); ?>" placeholder="https://">
-					<p class="description"><?php esc_html_e( 'Opcjonalny. Po kliknięciu w kafel klient trafi pod ten adres.', 'marcin-rynkowski-narzedzia' ); ?></p>
+				<th scope="row" class="titledesc"><?php Fields::label( 'rynkowski-link', __( 'Link', 'marcin-rynkowski-narzedzia' ), __( 'Opcjonalny. Po kliknięciu w kafel klient trafi pod ten adres.', 'marcin-rynkowski-narzedzia' ) ); ?></th>
+				<td class="forminp">
+					<input type="url" id="rynkowski-link" name="rynkowski_link" value="<?php echo esc_attr( $tile['link'] ); ?>" placeholder="https://">
 				</td>
 			</tr>
 
@@ -81,27 +82,26 @@ final class Tile_Admin {
 			<?php self::render_media_row( 'video', 'rynkowski_poster_id', __( 'Obrazek zastępczy', 'marcin-rynkowski-narzedzia' ), $tile['poster_id'], 'image', __( 'Widoczny, zanim wideo się wczyta.', 'marcin-rynkowski-narzedzia' ) ); ?>
 
 			<tr class="rynkowski-kafel-pole" data-typ="text">
-				<th scope="row"><label for="rynkowski-heading"><?php esc_html_e( 'Nagłówek', 'marcin-rynkowski-narzedzia' ); ?></label></th>
-				<td><input type="text" id="rynkowski-heading" name="rynkowski_heading" class="regular-text" value="<?php echo esc_attr( $tile['heading'] ); ?>"></td>
+				<th scope="row" class="titledesc"><?php Fields::label( 'rynkowski-heading', __( 'Nagłówek', 'marcin-rynkowski-narzedzia' ) ); ?></th>
+				<td class="forminp"><input type="text" id="rynkowski-heading" name="rynkowski_heading" value="<?php echo esc_attr( $tile['heading'] ); ?>"></td>
 			</tr>
 			<tr class="rynkowski-kafel-pole" data-typ="text">
-				<th scope="row"><label for="rynkowski-description"><?php esc_html_e( 'Opis', 'marcin-rynkowski-narzedzia' ); ?></label></th>
-				<td><textarea id="rynkowski-description" name="rynkowski_description" class="large-text" rows="3"><?php echo esc_textarea( $tile['description'] ); ?></textarea></td>
+				<th scope="row" class="titledesc"><?php Fields::label( 'rynkowski-description', __( 'Opis', 'marcin-rynkowski-narzedzia' ) ); ?></th>
+				<td class="forminp"><textarea id="rynkowski-description" name="rynkowski_description" rows="3"><?php echo esc_textarea( $tile['description'] ); ?></textarea></td>
 			</tr>
 			<tr class="rynkowski-kafel-pole" data-typ="text">
-				<th scope="row"><label for="rynkowski-button"><?php esc_html_e( 'Tekst przycisku', 'marcin-rynkowski-narzedzia' ); ?></label></th>
-				<td>
-					<input type="text" id="rynkowski-button" name="rynkowski_button" class="regular-text" value="<?php echo esc_attr( $tile['button'] ); ?>">
-					<p class="description"><?php esc_html_e( 'Przycisk pokazuje się tylko, gdy kafel ma link.', 'marcin-rynkowski-narzedzia' ); ?></p>
+				<th scope="row" class="titledesc"><?php Fields::label( 'rynkowski-button', __( 'Tekst przycisku', 'marcin-rynkowski-narzedzia' ), __( 'Przycisk pokazuje się tylko, gdy kafel ma link.', 'marcin-rynkowski-narzedzia' ) ); ?></th>
+				<td class="forminp">
+					<input type="text" id="rynkowski-button" name="rynkowski_button" value="<?php echo esc_attr( $tile['button'] ); ?>">
 				</td>
 			</tr>
 			<tr class="rynkowski-kafel-pole" data-typ="text">
-				<th scope="row"><label for="rynkowski-bg-color"><?php esc_html_e( 'Kolor tła', 'marcin-rynkowski-narzedzia' ); ?></label></th>
-				<td><input type="text" id="rynkowski-bg-color" name="rynkowski_bg_color" class="rynkowski-color" value="<?php echo esc_attr( $tile['bg_color'] ); ?>"></td>
+				<th scope="row" class="titledesc"><?php Fields::label( 'rynkowski-bg-color', __( 'Kolor tła', 'marcin-rynkowski-narzedzia' ), __( 'Puste pole = domyślny kolor z Narzędzia → Ustawienia → Kafle promocyjne.', 'marcin-rynkowski-narzedzia' ) ); ?></th>
+				<td class="forminp"><input type="text" id="rynkowski-bg-color" name="rynkowski_bg_color" class="rynkowski-color" value="<?php echo esc_attr( $tile['bg_color'] ); ?>"></td>
 			</tr>
 			<tr class="rynkowski-kafel-pole" data-typ="text">
-				<th scope="row"><label for="rynkowski-text-color"><?php esc_html_e( 'Kolor tekstu', 'marcin-rynkowski-narzedzia' ); ?></label></th>
-				<td><input type="text" id="rynkowski-text-color" name="rynkowski_text_color" class="rynkowski-color" value="<?php echo esc_attr( $tile['text_color'] ); ?>"></td>
+				<th scope="row" class="titledesc"><?php Fields::label( 'rynkowski-text-color', __( 'Kolor tekstu', 'marcin-rynkowski-narzedzia' ), __( 'Puste pole = biały.', 'marcin-rynkowski-narzedzia' ) ); ?></th>
+				<td class="forminp"><input type="text" id="rynkowski-text-color" name="rynkowski_text_color" class="rynkowski-color" value="<?php echo esc_attr( $tile['text_color'] ); ?>"></td>
 			</tr>
 		</table>
 		<?php
@@ -115,15 +115,15 @@ final class Tile_Admin {
 	 * @param string $label       Etykieta.
 	 * @param int    $value       ID załącznika.
 	 * @param string $library     Filtr biblioteki: „image” albo typ MIME.
-	 * @param string $description Podpowiedź pod polem.
+	 * @param string $description Treść dymka pomocy.
 	 */
 	private static function render_media_row( string $type, string $name, string $label, int $value, string $library, string $description ): void {
 		$id   = str_replace( '_', '-', $name );
 		$file = $value ? get_the_title( $value ) : '';
 		?>
 		<tr class="rynkowski-kafel-pole" data-typ="<?php echo esc_attr( $type ); ?>">
-			<th scope="row"><label for="<?php echo esc_attr( $id ); ?>-wybierz"><?php echo esc_html( $label ); ?></label></th>
-			<td class="rynkowski-media" data-library="<?php echo esc_attr( $library ); ?>">
+			<th scope="row" class="titledesc"><?php Fields::label( $id . '-wybierz', $label, $description ); ?></th>
+			<td class="forminp rynkowski-media" data-library="<?php echo esc_attr( $library ); ?>">
 				<input type="hidden" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( (string) ( $value ? $value : '' ) ); ?>" class="rynkowski-media-id">
 				<div class="rynkowski-media-podglad">
 					<?php
@@ -136,7 +136,6 @@ final class Tile_Admin {
 				</div>
 				<button type="button" class="button rynkowski-media-wybierz" id="<?php echo esc_attr( $id ); ?>-wybierz"><?php esc_html_e( 'Wybierz z biblioteki', 'marcin-rynkowski-narzedzia' ); ?></button>
 				<button type="button" class="button-link rynkowski-media-usun"><?php esc_html_e( 'Usuń', 'marcin-rynkowski-narzedzia' ); ?></button>
-				<p class="description"><?php echo esc_html( $description ); ?></p>
 			</td>
 		</tr>
 		<?php
@@ -152,39 +151,38 @@ final class Tile_Admin {
 		?>
 		<table class="form-table" role="presentation">
 			<tr>
-				<th scope="row"><?php esc_html_e( 'Aktywny', 'marcin-rynkowski-narzedzia' ); ?></th>
-				<td>
+				<th scope="row" class="titledesc"><?php Fields::label( 'rynkowski-active', __( 'Aktywny', 'marcin-rynkowski-narzedzia' ), __( 'Wyłączony kafel zachowuje ustawienia, ale nie pokazuje się w sklepie.', 'marcin-rynkowski-narzedzia' ) ); ?></th>
+				<td class="forminp forminp-checkbox">
 					<label>
-						<input type="checkbox" name="rynkowski_active" value="yes" <?php checked( $tile['active'] ); ?>>
+						<input type="checkbox" id="rynkowski-active" name="rynkowski_active" value="yes" <?php checked( $tile['active'] ); ?>>
 						<?php esc_html_e( 'Pokazuj kafel na wybranych listach produktów', 'marcin-rynkowski-narzedzia' ); ?>
 					</label>
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><?php esc_html_e( 'Strona sklepu', 'marcin-rynkowski-narzedzia' ); ?></th>
-				<td>
+				<th scope="row" class="titledesc"><?php Fields::label( 'rynkowski-on-shop', __( 'Strona sklepu', 'marcin-rynkowski-narzedzia' ) ); ?></th>
+				<td class="forminp forminp-checkbox">
 					<label>
-						<input type="checkbox" name="rynkowski_on_shop" value="yes" <?php checked( $tile['on_shop'] ); ?>>
+						<input type="checkbox" id="rynkowski-on-shop" name="rynkowski_on_shop" value="yes" <?php checked( $tile['on_shop'] ); ?>>
 						<?php esc_html_e( 'Pokazuj na głównej stronie sklepu', 'marcin-rynkowski-narzedzia' ); ?>
 					</label>
 				</td>
 			</tr>
 			<?php
-			Fields::term_select( 'product_cat', 'rynkowski_categories', __( 'Kategorie', 'marcin-rynkowski-narzedzia' ), $tile['categories'] );
-			Fields::term_select( 'product_tag', 'rynkowski_tags', __( 'Tagi', 'marcin-rynkowski-narzedzia' ), $tile['tags'] );
+			Fields::term_select( 'product_cat', 'rynkowski_categories', __( 'Kategorie', 'marcin-rynkowski-narzedzia' ), $tile['categories'], __( 'Kafel pokaże się na listach tych kategorii (bez podkategorii).', 'marcin-rynkowski-narzedzia' ) );
+			Fields::term_select( 'product_tag', 'rynkowski_tags', __( 'Tagi', 'marcin-rynkowski-narzedzia' ), $tile['tags'], __( 'Kafel pokaże się na listach tych tagów.', 'marcin-rynkowski-narzedzia' ) );
 			?>
 			<tr>
-				<th scope="row"><label for="rynkowski-position"><?php esc_html_e( 'Pozycja', 'marcin-rynkowski-narzedzia' ); ?></label></th>
-				<td>
+				<th scope="row" class="titledesc"><?php Fields::label( 'rynkowski-position', __( 'Pozycja', 'marcin-rynkowski-narzedzia' ), __( 'Który element listy, licząc od lewej i od góry. Np. 4 = czwarte miejsce.', 'marcin-rynkowski-narzedzia' ) ); ?></th>
+				<td class="forminp">
 					<input type="number" id="rynkowski-position" name="rynkowski_position" min="1" step="1" class="small-text" value="<?php echo esc_attr( (string) $tile['position'] ); ?>">
-					<p class="description"><?php esc_html_e( 'Który element listy, licząc od lewej i od góry. Np. 4 = czwarte miejsce.', 'marcin-rynkowski-narzedzia' ); ?></p>
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><?php esc_html_e( 'Strona listy', 'marcin-rynkowski-narzedzia' ); ?></th>
-				<td>
+				<th scope="row" class="titledesc"><?php Fields::label( 'rynkowski-first-page-only', __( 'Strona listy', 'marcin-rynkowski-narzedzia' ) ); ?></th>
+				<td class="forminp forminp-checkbox">
 					<label>
-						<input type="checkbox" name="rynkowski_first_page_only" value="yes" <?php checked( $tile['first_page_only'] ); ?>>
+						<input type="checkbox" id="rynkowski-first-page-only" name="rynkowski_first_page_only" value="yes" <?php checked( $tile['first_page_only'] ); ?>>
 						<?php esc_html_e( 'Tylko pierwsza strona', 'marcin-rynkowski-narzedzia' ); ?>
 					</label>
 				</td>

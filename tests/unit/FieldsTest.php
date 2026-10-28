@@ -21,6 +21,30 @@ final class FieldsTest extends TestCase {
 		$this->assertStringContainsString( '<option value="4">Torebki</option>', $html );
 		$this->assertStringContainsString( '<option value="9" selected=\'selected\'>&lt;script&gt;x&lt;/script&gt;</option>', $html );
 		$this->assertStringNotContainsString( '<script>', $html );
+		// Układ jak w ustawieniach WooCommerce, bez dymka, gdy nie podano treści.
+		$this->assertStringContainsString( '<th scope="row" class="titledesc"><label for="rynkowski-product_cat">Kategorie</label></th>', $html );
+		$this->assertStringContainsString( '<td class="forminp">', $html );
+		$this->assertStringNotContainsString( 'woocommerce-help-tip', $html );
+	}
+
+	public function test_term_select_with_help_tip(): void {
+		Functions\when( 'get_terms' )->justReturn( array() );
+
+		$html = $this->capture( fn() => Fields::term_select( 'product_tag', 'tagi', 'Tagi', array(), 'Podpowiedź' ) );
+
+		$this->assertStringContainsString( '<label for="rynkowski-product_tag">Tagi</label><span class="woocommerce-help-tip"', $html );
+		$this->assertStringContainsString( 'data-tip="Podpowiedź"', $html );
+	}
+
+	public function test_label_escapes_and_adds_tip_only_when_given(): void {
+		$this->assertSame(
+			'<label for="a&quot;b">&lt;b&gt;Etykieta&lt;/b&gt;</label>',
+			$this->capture( fn() => Fields::label( 'a"b', '<b>Etykieta</b>' ) )
+		);
+		$this->assertSame(
+			'<label for="x">X</label><span class="woocommerce-help-tip" tabindex="0" aria-label="&lt;i&gt;tip&lt;/i&gt;" data-tip="&lt;i&gt;tip&lt;/i&gt;"></span>',
+			$this->capture( fn() => Fields::label( 'x', 'X', '<i>tip</i>' ) )
+		);
 	}
 
 	public function test_term_select_survives_wp_error(): void {

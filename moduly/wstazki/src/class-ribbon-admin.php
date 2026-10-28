@@ -7,6 +7,7 @@
 
 namespace Rynkowski\Narzedzia\Moduly\Wstazki;
 
+use Rynkowski\Narzedzia\Admin_Screens;
 use Rynkowski\Narzedzia\Fields;
 
 defined( 'ABSPATH' ) || exit;
@@ -22,6 +23,7 @@ final class Ribbon_Admin {
 	 * Podpina akcje panelu.
 	 */
 	public static function register(): void {
+		Admin_Screens::register( Ribbons::POST_TYPE );
 		add_action( 'add_meta_boxes_' . Ribbons::POST_TYPE, array( self::class, 'add_meta_boxes' ) );
 		add_action( 'save_post_' . Ribbons::POST_TYPE, array( self::class, 'save' ), 10, 2 );
 		add_action( 'admin_enqueue_scripts', array( self::class, 'enqueue' ) );
@@ -64,28 +66,26 @@ final class Ribbon_Admin {
 		?>
 		<table class="form-table" role="presentation">
 			<tr>
-				<th scope="row"><label for="rynkowski-text"><?php esc_html_e( 'Tekst wstążki', 'marcin-rynkowski-narzedzia' ); ?></label></th>
-				<td><input type="text" id="rynkowski-text" name="rynkowski_text" class="regular-text" value="<?php echo esc_attr( $ribbon['text'] ); ?>" required></td>
+				<th scope="row" class="titledesc"><?php Fields::label( 'rynkowski-text', __( 'Tekst wstążki', 'marcin-rynkowski-narzedzia' ), __( 'Tekst widoczny na zdjęciu produktu.', 'marcin-rynkowski-narzedzia' ) ); ?></th>
+				<td class="forminp"><input type="text" id="rynkowski-text" name="rynkowski_text" value="<?php echo esc_attr( $ribbon['text'] ); ?>" required></td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="rynkowski-text-color"><?php esc_html_e( 'Kolor tekstu', 'marcin-rynkowski-narzedzia' ); ?></label></th>
-				<td>
+				<th scope="row" class="titledesc"><?php Fields::label( 'rynkowski-text-color', __( 'Kolor tekstu', 'marcin-rynkowski-narzedzia' ), __( 'Puste pole = kolor z ustawień odznak w Blocksy.', 'marcin-rynkowski-narzedzia' ) ); ?></th>
+				<td class="forminp">
 					<input type="text" id="rynkowski-text-color" name="rynkowski_text_color" class="rynkowski-color" value="<?php echo esc_attr( $ribbon['text_color'] ); ?>">
-					<p class="description"><?php esc_html_e( 'Puste pole = kolor z ustawień odznak w Blocksy.', 'marcin-rynkowski-narzedzia' ); ?></p>
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="rynkowski-bg-color"><?php esc_html_e( 'Kolor tła', 'marcin-rynkowski-narzedzia' ); ?></label></th>
-				<td>
+				<th scope="row" class="titledesc"><?php Fields::label( 'rynkowski-bg-color', __( 'Kolor tła', 'marcin-rynkowski-narzedzia' ), __( 'Puste pole = kolor z ustawień odznak w Blocksy.', 'marcin-rynkowski-narzedzia' ) ); ?></th>
+				<td class="forminp">
 					<input type="text" id="rynkowski-bg-color" name="rynkowski_bg_color" class="rynkowski-color" value="<?php echo esc_attr( $ribbon['bg_color'] ); ?>">
-					<p class="description"><?php esc_html_e( 'Puste pole = kolor z ustawień odznak w Blocksy.', 'marcin-rynkowski-narzedzia' ); ?></p>
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><?php esc_html_e( 'Aktywna', 'marcin-rynkowski-narzedzia' ); ?></th>
-				<td>
+				<th scope="row" class="titledesc"><?php Fields::label( 'rynkowski-active', __( 'Aktywna', 'marcin-rynkowski-narzedzia' ), __( 'Wyłączona wstążka zachowuje przypisania, ale nie pokazuje się w sklepie.', 'marcin-rynkowski-narzedzia' ) ); ?></th>
+				<td class="forminp forminp-checkbox">
 					<label>
-						<input type="checkbox" name="rynkowski_active" value="yes" <?php checked( $ribbon['active'] ); ?>>
+						<input type="checkbox" id="rynkowski-active" name="rynkowski_active" value="yes" <?php checked( $ribbon['active'] ); ?>>
 						<?php esc_html_e( 'Pokazuj wstążkę na przypisanych produktach', 'marcin-rynkowski-narzedzia' ); ?>
 					</label>
 				</td>
@@ -104,8 +104,8 @@ final class Ribbon_Admin {
 		?>
 		<table class="form-table" role="presentation">
 			<tr>
-				<th scope="row"><label for="rynkowski-products"><?php esc_html_e( 'Produkty', 'marcin-rynkowski-narzedzia' ); ?></label></th>
-				<td>
+				<th scope="row" class="titledesc"><?php Fields::label( 'rynkowski-products', __( 'Produkty', 'marcin-rynkowski-narzedzia' ), __( 'Wstążka pokaże się na tych produktach.', 'marcin-rynkowski-narzedzia' ) ); ?></th>
+				<td class="forminp">
 					<select id="rynkowski-products" name="rynkowski_products[]" class="wc-product-search" multiple style="width: 100%;" data-placeholder="<?php esc_attr_e( 'Wyszukaj produkt…', 'marcin-rynkowski-narzedzia' ); ?>" data-action="woocommerce_json_search_products">
 						<?php
 						foreach ( $ribbon['products'] as $product_id ) {
@@ -119,8 +119,8 @@ final class Ribbon_Admin {
 				</td>
 			</tr>
 			<?php
-			Fields::term_select( 'product_cat', 'rynkowski_categories', __( 'Kategorie', 'marcin-rynkowski-narzedzia' ), $ribbon['categories'] );
-			Fields::term_select( 'product_tag', 'rynkowski_tags', __( 'Tagi', 'marcin-rynkowski-narzedzia' ), $ribbon['tags'] );
+			Fields::term_select( 'product_cat', 'rynkowski_categories', __( 'Kategorie', 'marcin-rynkowski-narzedzia' ), $ribbon['categories'], __( 'Wstążka pokaże się na wszystkich produktach z tych kategorii.', 'marcin-rynkowski-narzedzia' ) );
+			Fields::term_select( 'product_tag', 'rynkowski_tags', __( 'Tagi', 'marcin-rynkowski-narzedzia' ), $ribbon['tags'], __( 'Wstążka pokaże się na wszystkich produktach z tymi tagami.', 'marcin-rynkowski-narzedzia' ) );
 			?>
 		</table>
 		<?php

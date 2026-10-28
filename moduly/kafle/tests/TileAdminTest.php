@@ -73,6 +73,11 @@ final class TileAdminTest extends TestCase {
 		$this->assertStringContainsString( 'value="#123456"', $html );
 		// Pusty obrazek zastępczy nie ma podglądu.
 		$this->assertMatchesRegularExpression( '/name="rynkowski_poster_id" value=""/', $html );
+		// Układ ustawień WooCommerce: opisy jako dymki „?”, etykieta pola mediów prowadzi do przycisku wyboru.
+		$this->assertStringContainsString( '<label for="rynkowski-video-id-wybierz">Plik wideo (MP4)</label><span class="woocommerce-help-tip"', $html );
+		$this->assertStringContainsString( '<td class="forminp rynkowski-media" data-library="video/mp4">', $html );
+		$this->assertStringContainsString( 'data-tip="Przycisk pokazuje się tylko, gdy kafel ma link."', $html );
+		$this->assertStringNotContainsString( '<p class="description">', $html );
 	}
 
 	public function test_render_display_shows_rules(): void {
@@ -90,6 +95,13 @@ final class TileAdminTest extends TestCase {
 		$this->assertMatchesRegularExpression( '/name="rynkowski_first_page_only" value="yes"\s+>/', $html );
 		$this->assertStringContainsString( 'value="4"', $html );
 		$this->assertStringContainsString( 'name="rynkowski_categories[]"', $html );
+		// Każdy przełącznik ma etykietę w kolumnie nazw, powiązaną z polem.
+		foreach ( array( 'rynkowski-active', 'rynkowski-on-shop', 'rynkowski-first-page-only', 'rynkowski-position' ) as $id ) {
+			$this->assertStringContainsString( '<label for="' . $id . '">', $html );
+			$this->assertStringContainsString( 'id="' . $id . '"', $html );
+		}
+		$this->assertStringContainsString( 'data-tip="Kafel pokaże się na listach tych kategorii (bez podkategorii)."', $html );
+		$this->assertStringNotContainsString( '<p class="description">', $html );
 	}
 
 	public function test_save_ignores_missing_or_bad_nonce(): void {

@@ -65,6 +65,12 @@ final class RibbonAdminTest extends TestCase {
 		$this->assertStringNotContainsString( '<script>', $html );
 		$this->assertStringContainsString( 'value="#ffffff"', $html );
 		$this->assertMatchesRegularExpression( '/name="rynkowski_active" value="yes"\s+checked=\'checked\'>/', $html );
+		// Układ ustawień WooCommerce: opisy jako dymki „?”, etykieta prowadzi do pola.
+		$this->assertStringContainsString( '<label for="rynkowski-text-color">Kolor tekstu</label><span class="woocommerce-help-tip"', $html );
+		$this->assertStringContainsString( 'data-tip="Puste pole = kolor z ustawień odznak w Blocksy."', $html );
+		$this->assertStringContainsString( '<label for="rynkowski-active">Aktywna</label>', $html );
+		$this->assertStringContainsString( 'id="rynkowski-active" name="rynkowski_active"', $html );
+		$this->assertStringNotContainsString( '<p class="description">', $html );
 	}
 
 	public function test_render_assignment_lists_saved_products_and_skips_deleted(): void {
