@@ -38,7 +38,7 @@ final class UpdaterTest extends TestCase {
 		);
 
 		$this->assertSame(
-			array( Updater::REPO, '/plugins/marcin-rynkowski-narzedzia/marcin-rynkowski-narzedzia.php', 'marcin-rynkowski-narzedzia' ),
+			array( Updater::REPO, '/plugins/marcin-rynkowski-narzedzia/marcin-rynkowski-narzedzia.php', 'marcin-rynkowski-narzedzia', 2 ),
 			$args
 		);
 		$this->assertSame( '/marcin-rynkowski-narzedzia\.zip$/', $api->pattern );

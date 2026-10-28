@@ -272,6 +272,8 @@ final class Settings_Page {
 					}
 				);
 				$wc['suffix']            = $field['suffix'] ?? '';
+				// Wąskie pole liczby jak w WooCommerce; jednostka w jednej linii (CSS w enqueue()).
+				$wc['css'] = 'width:80px;';
 			}
 
 			if ( 'select' === $field['type'] ) {
@@ -369,5 +371,10 @@ final class Settings_Page {
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_script( 'wp-color-picker' );
 		wp_add_inline_script( 'wp-color-picker', 'jQuery(function($){$(".rynkowski-color").wpColorPicker();});' );
+
+		// Jednostka (np. „px”) w jednej linii z polem liczby, jak na stronie ustawień WooCommerce.
+		wp_register_style( 'rynkowski-ustawienia', false, array(), Plugin::VERSION );
+		wp_enqueue_style( 'rynkowski-ustawienia' );
+		wp_add_inline_style( 'rynkowski-ustawienia', '.toplevel_page_rynkowski-narzedzia .forminp-number input{vertical-align:middle;margin-right:4px;}' );
 	}
 }

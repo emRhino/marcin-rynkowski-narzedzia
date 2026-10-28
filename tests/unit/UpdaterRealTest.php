@@ -30,12 +30,14 @@ final class UpdaterRealTest extends TestCase {
 		Functions\when( 'wp_parse_url' )->alias( 'parse_url' );
 		Functions\when( 'plugin_basename' )->justReturn( 'marcin-rynkowski-narzedzia/marcin-rynkowski-narzedzia.php' );
 		Functions\when( 'wp_next_scheduled' )->justReturn( null );
-		Functions\when( 'wp_schedule_event' )->justReturn( null );
 		Functions\when( 'register_deactivation_hook' )->justReturn( null );
 		Plugin::boot( realpath( self::MAIN_FILE ) );
 
 		// PUC wstrzykuje aktualizację przez ten filtr — znak, że sprawdzacz naprawdę powstał.
 		Filters\expectAdded( 'site_transient_update_plugins' )->atLeast()->once();
+		// Sprawdzanie co 2 godziny: PUC dokłada własny harmonogram „every2hours” i planuje według niego.
+		Filters\expectAdded( 'cron_schedules' )->atLeast()->once();
+		Functions\expect( 'wp_schedule_event' )->once()->with( \Mockery::type( 'int' ), 'every2hours', \Mockery::type( 'string' ) );
 
 		// Dokładnie tak woła WordPress: do_action() bez argumentów daje callbackowi ''.
 		call_user_func_array( array( Updater::class, 'boot' ), array( '' ) );

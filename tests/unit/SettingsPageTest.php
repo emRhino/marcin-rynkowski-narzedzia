@@ -174,6 +174,7 @@ final class SettingsPageTest extends TestCase {
 				'value'             => 7,
 				'custom_attributes' => array( 'min' => 0, 'max' => 10, 'step' => 1 ),
 				'suffix'            => 'px',
+				'css'               => 'width:80px;',
 			),
 			$fields[1]
 		);
@@ -323,10 +324,13 @@ final class SettingsPageTest extends TestCase {
 		$this->assertSame( 'zepsute', $this->page->screen_ids( 'zepsute' ) );
 	}
 
-	public function test_enqueue_color_picker_only_on_settings_screen(): void {
+	public function test_enqueue_color_picker_and_styles_only_on_settings_screen(): void {
 		Functions\expect( 'wp_enqueue_style' )->once()->with( 'wp-color-picker' );
 		Functions\expect( 'wp_enqueue_script' )->once()->with( 'wp-color-picker' );
 		Functions\expect( 'wp_add_inline_script' )->once()->with( 'wp-color-picker', \Mockery::pattern( '/\.rynkowski-color/' ) );
+		Functions\expect( 'wp_register_style' )->once()->with( 'rynkowski-ustawienia', false, array(), Plugin::VERSION );
+		Functions\expect( 'wp_enqueue_style' )->once()->with( 'rynkowski-ustawienia' );
+		Functions\expect( 'wp_add_inline_style' )->once()->with( 'rynkowski-ustawienia', \Mockery::pattern( '/^\.toplevel_page_rynkowski-narzedzia \.forminp-number input\{vertical-align:middle;/' ) );
 
 		$this->page->enqueue( 'edit.php' );
 		$this->page->enqueue( Settings_Page::SCREEN_ID );

@@ -76,7 +76,12 @@ final class AdminScreensTest extends TestCase {
 						}
 					}
 					return str_contains( $css, '#postbox-container-1{order:2;' )
-						&& str_contains( $css, '.form-table th.titledesc{width:200px;}' );
+						&& str_contains( $css, '.form-table th.titledesc{width:200px;}' )
+						// Listy wyboru tej samej szerokości co pola tekstowe.
+						&& str_contains( $css, '.select2-container{width:400px!important;' )
+						// „Opublikuj” bez nagłówka, przycisk po lewej.
+						&& str_contains( $css, '#submitdiv .postbox-header{display:none;}' )
+						&& str_contains( $css, '#major-publishing-actions{display:flex;flex-direction:row-reverse;justify-content:flex-end;' );
 				}
 			)
 		);

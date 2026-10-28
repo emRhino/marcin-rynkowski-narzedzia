@@ -18,6 +18,9 @@ final class Updater {
 
 	const REPO = 'https://github.com/emRhino/marcin-rynkowski-narzedzia/';
 
+	// Co ile godzin sprawdzać GitHuba (domyślnie w PUC: 12). Przy kilku sklepach limit API nie gra roli.
+	const CHECK_HOURS = 2;
+
 	/**
 	 * Callback hooka plugins_loaded.
 	 *
@@ -35,7 +38,7 @@ final class Updater {
 	 */
 	public static function register( ?callable $factory = null ): void {
 		$factory = $factory ?? array( PucFactory::class, 'buildUpdateChecker' );
-		$checker = $factory( self::REPO, Plugin::file(), 'marcin-rynkowski-narzedzia' );
+		$checker = $factory( self::REPO, Plugin::file(), 'marcin-rynkowski-narzedzia', self::CHECK_HOURS );
 
 		// Paczka z wydania (zip z GitHub Actions), nie archiwum kodu źródłowego.
 		$api = $checker->getVcsApi();

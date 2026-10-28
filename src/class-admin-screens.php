@@ -104,6 +104,17 @@ final class Admin_Screens {
 			// Etykiety i pola o szerokościach z WooCommerce.
 			. $s . '.form-table th.titledesc{width:200px;}'
 			. $s . '.form-table th.titledesc .woocommerce-help-tip{margin-left:4px;}'
-			. $s . '.form-table td.forminp input[type=text],' . $s . '.form-table td.forminp input[type=url],' . $s . '.form-table td.forminp textarea{width:400px;max-width:100%;}';
+			. $s . '.form-table td.forminp input[type=text],' . $s . '.form-table td.forminp input[type=url],' . $s . '.form-table td.forminp textarea{width:400px;max-width:100%;}'
+			// Listy wyboru (select2) tej samej szerokości; !important, bo select2 wpisuje szerokość w style.
+			. $s . '.form-table td.forminp .select2-container{width:400px!important;max-width:100%;}'
+			// „Opublikuj” bez ramki i nagłówka: status małą linią, przycisk po lewej jak „Zapisz zmiany”.
+			. $s . '#submitdiv{border:0;background:transparent;box-shadow:none;}'
+			. $s . '#submitdiv .postbox-header{display:none;}'
+			. $s . '#submitdiv .inside{padding:0;margin:0;}'
+			. $s . '#submitdiv #misc-publishing-actions{padding:0;font-size:12px;color:#646970;}'
+			. $s . '#submitdiv #misc-publishing-actions .misc-pub-section{display:inline-block;padding:0 16px 8px 0;}'
+			. $s . '#submitdiv #major-publishing-actions{display:flex;flex-direction:row-reverse;justify-content:flex-end;align-items:center;gap:16px;padding:8px 0 0;background:transparent;border:0;}'
+			. $s . '#submitdiv #major-publishing-actions #publishing-action,' . $s . '#submitdiv #major-publishing-actions #delete-action{float:none;}'
+			. $s . '#submitdiv #major-publishing-actions .clear{display:none;}';
 	}
 }
