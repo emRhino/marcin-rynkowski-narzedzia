@@ -10,7 +10,7 @@ namespace Rynkowski\Narzedzia\Moduly\Zakladki;
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Dodaje niepuste treści jako zakładki WooCommerce; wygląd (karty albo akordeon) zostawia motywowi.
+ * Dodaje niepuste treści włączonych zakładek jako zakładki WooCommerce; wygląd (karty albo akordeon) zostawia motywowi.
  */
 final class Product_Tabs {
 
@@ -33,6 +33,15 @@ final class Product_Tabs {
 			'cechy'          => __( 'Cechy produktu', 'marcin-rynkowski-narzedzia' ),
 			'bezpieczenstwo' => __( 'Bezpieczeństwo produktu', 'marcin-rynkowski-narzedzia' ),
 		);
+	}
+
+	/**
+	 * Zakładki włączone w ustawieniach, w stałej kolejności: klucz => tytuł.
+	 *
+	 * @return array<string, string>
+	 */
+	public static function enabled(): array {
+		return array_filter( self::labels(), array( Tab_Settings::class, 'is_enabled' ), ARRAY_FILTER_USE_KEY );
 	}
 
 	/**
@@ -75,9 +84,10 @@ final class Product_Tabs {
 			return $tabs;
 		}
 
+		// Priorytet z pozycji na pełnej liście, więc kolejność nie zależy od wyłączonych zakładek.
 		$priority = self::FIRST_PRIORITY;
 		foreach ( self::labels() as $key => $title ) {
-			if ( '' !== trim( self::content( $product_id, $key ) ) ) {
+			if ( Tab_Settings::is_enabled( $key ) && '' !== trim( self::content( $product_id, $key ) ) ) {
 				$tabs[ self::TAB_PREFIX . $key ] = array(
 					'title'    => $title,
 					'priority' => $priority,
@@ -97,7 +107,7 @@ final class Product_Tabs {
 	 */
 	public static function render( string $tab_key ): void {
 		$key = substr( $tab_key, strlen( self::TAB_PREFIX ) );
-		if ( ! str_starts_with( $tab_key, self::TAB_PREFIX ) || ! array_key_exists( $key, self::labels() ) ) {
+		if ( ! str_starts_with( $tab_key, self::TAB_PREFIX ) || ! array_key_exists( $key, self::enabled() ) ) {
 			return;
 		}
 

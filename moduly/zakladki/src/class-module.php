@@ -7,12 +7,16 @@
 
 namespace Rynkowski\Narzedzia\Moduly\Zakladki;
 
+use Rynkowski\Narzedzia\Has_Settings;
+
 defined( 'ABSPATH' ) || exit;
 
 /**
  * Moduł „Zakładki produktu”: dodatkowe opisy produktu jako zakładki WooCommerce.
+ *
+ * @phpstan-import-type SettingsTab from Has_Settings
  */
-final class Module implements \Rynkowski\Narzedzia\Module {
+final class Module implements \Rynkowski\Narzedzia\Module, Has_Settings {
 
 	/**
 	 * Slug modułu.
@@ -69,11 +73,26 @@ final class Module implements \Rynkowski\Narzedzia\Module {
 	}
 
 	/**
-	 * Usuwa treści zakładek ze wszystkich produktów.
+	 * Zakładka „Zakładki produktu” w Narzędzia → Ustawienia.
+	 *
+	 * @return array Tytuł, nazwa opcji i pola.
+	 * @phpstan-return SettingsTab
+	 */
+	public function settings_tab(): array {
+		return array(
+			'title'  => $this->name(),
+			'option' => Tab_Settings::OPTION,
+			'fields' => Tab_Settings::fields(),
+		);
+	}
+
+	/**
+	 * Usuwa treści zakładek ze wszystkich produktów i ustawienia.
 	 */
 	public function uninstall(): void {
 		foreach ( array_keys( Product_Tabs::labels() ) as $key ) {
 			delete_post_meta_by_key( Product_Tabs::meta_key( $key ) );
 		}
+		delete_option( Tab_Settings::OPTION );
 	}
 }

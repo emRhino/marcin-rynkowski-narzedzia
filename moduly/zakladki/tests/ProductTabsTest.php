@@ -5,6 +5,7 @@ namespace Rynkowski\Narzedzia\Moduly\Zakladki\Tests;
 
 use Brain\Monkey\Functions;
 use Rynkowski\Narzedzia\Moduly\Zakladki\Product_Tabs;
+use Rynkowski\Narzedzia\Moduly\Zakladki\Tab_Settings;
 use Rynkowski\Narzedzia\Tests\TestCase;
 
 final class ProductTabsTest extends TestCase {
@@ -69,6 +70,28 @@ final class ProductTabsTest extends TestCase {
 
 		$this->assertSame( array( 'rynkowski_bezpieczenstwo' ), array_keys( $tabs ) );
 		$this->assertSame( 13, $tabs['rynkowski_bezpieczenstwo']['priority'] );
+	}
+
+	public function test_skips_disabled_tabs_with_content(): void {
+		$this->meta[7] = array(
+			'_rynkowski_zakladki_pielegnacja'    => 'Myć ręcznie.',
+			'_rynkowski_zakladki_cechy'          => 'Kamionka.',
+			'_rynkowski_zakladki_bezpieczenstwo' => 'Bezołowiowe.',
+		);
+		$this->options[ Tab_Settings::OPTION ] = array( 'pielegnacja' => 'no', 'cechy' => 'no' );
+
+		$tabs = Product_Tabs::add_tabs( array() );
+
+		$this->assertSame( array( 'rynkowski_bezpieczenstwo' ), array_keys( $tabs ) );
+		// Priorytet bez zmian, niezależnie od wyłączonych.
+		$this->assertSame( 13, $tabs['rynkowski_bezpieczenstwo']['priority'] );
+	}
+
+	public function test_render_ignores_disabled_tab(): void {
+		$this->meta[7] = array( '_rynkowski_zakladki_cechy' => 'Kamionka' );
+		$this->options[ Tab_Settings::OPTION ] = array( 'cechy' => 'no' );
+
+		$this->assertSame( '', $this->capture( static fn() => Product_Tabs::render( 'rynkowski_cechy' ) ) );
 	}
 
 	public function test_no_product_changes_nothing(): void {
