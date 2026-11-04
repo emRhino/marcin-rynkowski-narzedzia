@@ -1,9 +1,9 @@
 {
   "name": "Marcin Rynkowski – narzędzia",
   "slug": "marcin-rynkowski-narzedzia",
-  "version": "0.22.0",
-  "download_url": "https://github.com/emRhino/marcin-rynkowski-narzedzia/releases/download/v0.22.0/marcin-rynkowski-narzedzia.zip",
+  "version": "0.23.0",
+  "download_url": "https://github.com/emRhino/marcin-rynkowski-narzedzia/releases/download/v0.23.0/marcin-rynkowski-narzedzia.zip",
   "requires": "6.5",
   "requires_php": "8.1",
-  "last_updated": "2026-11-04T18:59:24Z"
+  "last_updated": "2026-11-04T22:19:28Z"
 }
