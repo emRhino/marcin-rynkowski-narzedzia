@@ -1,10 +1,10 @@
 {
   "name": "Marcin Rynkowski – narzędzia",
   "slug": "marcin-rynkowski-narzedzia",
-  "version": "0.27.0",
-  "download_url": "https://github.com/emRhino/marcin-rynkowski-narzedzia/releases/download/v0.27.0/marcin-rynkowski-narzedzia.zip",
-  "sha256": "32af6c3d55681749c71667835ad6643472c10a6e095ceef312066c3cc2f59217",
+  "version": "0.28.0",
+  "download_url": "https://github.com/emRhino/marcin-rynkowski-narzedzia/releases/download/v0.28.0/marcin-rynkowski-narzedzia.zip",
+  "sha256": "b1921a482c8aad2f0db52faff75a09ef40afd34e5d499cd4461f38966c5a1951",
   "requires": "6.5",
   "requires_php": "8.1",
-  "last_updated": "2026-11-10T23:28:41Z"
+  "last_updated": "2026-11-12T08:44:18Z"
 }
