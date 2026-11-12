@@ -5,6 +5,10 @@
 	},
 	"categories": [
 		{
+			"id": "pierwsze-kroki",
+			"title": "Pierwsze kroki"
+		},
+		{
 			"id": "zamowienia",
 			"title": "Zamówienia"
 		},
@@ -42,6 +46,268 @@
 		}
 	],
 	"lessons": [
+		{
+			"id": "kokpit",
+			"category": "pierwsze-kroki",
+			"title": "Kokpit: co gdzie jest",
+			"text": "Kokpit to zaplecze sklepu: miejsce, w którym obsługuje się zamówienia, dodaje produkty i zmienia treści. Artykuł pokazuje, jak się zalogować i co znajduje się w poszczególnych częściach ekranu.",
+			"body": [
+				{
+					"type": "h",
+					"text": "Jak się zalogować"
+				},
+				{
+					"type": "step",
+					"text": "W przeglądarce wpisz adres sklepu z dopiskiem **/wp-admin**, np. twojsklep.pl/wp-admin."
+				},
+				{
+					"type": "step",
+					"text": "Wpisz nazwę użytkownika albo adres e-mail oraz hasło i kliknij **Zaloguj się**.",
+					"image": "kokpit-logowanie.webp",
+					"alt": "Ekran logowania z polami Nazwa użytkownika lub adres email i Hasło, polem Zapamiętaj mnie i przyciskiem Zaloguj się",
+					"width": 420
+				},
+				{
+					"type": "p",
+					"text": "Pole **Zapamiętaj mnie** sprawia, że przeglądarka nie pyta o hasło przy kolejnych wejściach. Zaznaczaj je tylko na własnym komputerze. Link **Nie pamiętasz hasła?** wysyła e-mail z odnośnikiem do ustawienia nowego hasła."
+				},
+				{
+					"type": "h",
+					"text": "Układ ekranu"
+				},
+				{
+					"type": "image",
+					"image": "kokpit-caly.webp",
+					"alt": "Kokpit po zalogowaniu: ciemny pasek na górze, menu po lewej stronie i obszar roboczy z widżetami"
+				},
+				{
+					"type": "p",
+					"text": "Każdy ekran kokpitu ma trzy części. Na górze jest ciemny pasek, po lewej stronie menu, a resztę zajmuje obszar roboczy, którego zawartość zależy od wybranej pozycji menu."
+				},
+				{
+					"type": "h",
+					"text": "Pasek na górze"
+				},
+				{
+					"type": "p",
+					"text": "**Nazwa sklepu** po lewej stronie paska prowadzi na stronę sklepu, taką, jaką widzą klienci. Po najechaniu kursorem pojawiają się pozycje „Odwiedź witrynę” i „Odwiedź sklep”."
+				},
+				{
+					"type": "image",
+					"image": "kokpit-pasek-nazwa-sklepu.webp",
+					"alt": "Lewa część górnego paska z zaznaczoną nazwą sklepu",
+					"width": 300
+				},
+				{
+					"type": "p",
+					"text": "**Utwórz** otwiera listę skrótów do dodawania nowych rzeczy, np. produktu, strony albo wpisu."
+				},
+				{
+					"type": "p",
+					"text": "**Witaj, …** po prawej stronie paska to Twoje konto. Po najechaniu kursorem pojawiają się pozycje „Edytuj profil” (zmiana hasła i danych) oraz „Wyloguj się”."
+				},
+				{
+					"type": "image",
+					"image": "kokpit-pasek-konto.webp",
+					"alt": "Prawa część górnego paska z zaznaczonym napisem Witaj i nazwą użytkownika",
+					"width": 260
+				},
+				{
+					"type": "note",
+					"text": "**Dobrze wiedzieć:** na cudzym albo wspólnym komputerze po skończonej pracy kliknij **Wyloguj się**. Bez tego następna osoba przy tym komputerze wejdzie do kokpitu bez hasła."
+				},
+				{
+					"type": "h",
+					"text": "Menu po lewej stronie"
+				},
+				{
+					"type": "image",
+					"image": "kokpit-menu.webp",
+					"alt": "Menu kokpitu z pozycjami od Kokpit do Ustawienia i przyciskiem Zwiń menu na dole",
+					"width": 184
+				},
+				{
+					"type": "p",
+					"text": "**Kokpit**: ekran startowy i aktualizacje."
+				},
+				{
+					"type": "p",
+					"text": "**Wpisy**: artykuły na blogu sklepu."
+				},
+				{
+					"type": "p",
+					"text": "**Media**: zdjęcia i pliki wgrane do sklepu."
+				},
+				{
+					"type": "p",
+					"text": "**Strony**: strony z treścią stałą, np. „O nas”, „Kontakt”, „Regulamin”."
+				},
+				{
+					"type": "p",
+					"text": "**Komentarze**: komentarze pod wpisami."
+				},
+				{
+					"type": "p",
+					"text": "**WooCommerce**: zamówienia, klienci, kupony, raporty i ustawienia sklepu."
+				},
+				{
+					"type": "p",
+					"text": "**Produkty**: produkty, ich kategorie, tagi i atrybuty."
+				},
+				{
+					"type": "p",
+					"text": "**Płatności**, **Analityka**, **Marketing**: metody płatności, statystyki sprzedaży i narzędzia promocji."
+				},
+				{
+					"type": "p",
+					"text": "**Wygląd**: motyw sklepu, menu na stronie i ustawienia wyglądu."
+				},
+				{
+					"type": "p",
+					"text": "**Wtyczki**, **Użytkownicy**, **Narzędzia**, **Ustawienia**: sprawy techniczne, którymi zajmuje się administrator."
+				},
+				{
+					"type": "p",
+					"text": "**Blocksy** i **Rynkowski**: ustawienia motywu oraz narzędzia sklepu. Pod pozycją „Rynkowski” są też te instrukcje."
+				},
+				{
+					"type": "p",
+					"text": "Po najechaniu kursorem na pozycję menu obok pojawia się lista jej podstron. Kliknięcie pozycji otwiera pierwszą z nich."
+				},
+				{
+					"type": "note",
+					"text": "**Dobrze wiedzieć:** w Twoim sklepie menu może wyglądać inaczej. Zainstalowane wtyczki dodają własne pozycje, a konto pracownika widzi tylko te, do których ma uprawnienia."
+				},
+				{
+					"type": "h",
+					"text": "Jak zwinąć menu"
+				},
+				{
+					"type": "step",
+					"text": "Kliknij **Zwiń menu** na samym dole menu. Zostaną same ikony, a obszar roboczy stanie się szerszy.",
+					"image": "kokpit-zwin-menu.webp",
+					"alt": "Dół menu kokpitu z zaznaczonym przyciskiem Zwiń menu",
+					"width": 270
+				},
+				{
+					"type": "step",
+					"text": "Kliknij tę samą ikonę jeszcze raz, żeby rozwinąć menu z powrotem."
+				},
+				{
+					"type": "h",
+					"text": "Liczby w kółkach"
+				},
+				{
+					"type": "image",
+					"image": "kokpit-liczba-przy-pozycji.webp",
+					"alt": "Pozycja Zamówienia w menu WooCommerce z zaznaczoną liczbą 3 w kółku",
+					"width": 270
+				},
+				{
+					"type": "p",
+					"text": "Liczba w kółku przy pozycji menu oznacza, że coś czeka na reakcję. Przy „Zamówieniach” to liczba zamówień do realizacji, przy „Komentarzach” komentarze do zatwierdzenia, a przy „Aktualizacjach” i „Wtyczkach” dostępne aktualizacje."
+				},
+				{
+					"type": "h",
+					"text": "Ekran startowy"
+				},
+				{
+					"type": "p",
+					"text": "Po zalogowaniu otwiera się ekran **Kokpit** z ramkami, czyli widżetami. Każdy pokazuje skrót innych informacji."
+				},
+				{
+					"type": "image",
+					"image": "kokpit-widzet-status.webp",
+					"alt": "Widżet Status WooCommerce: sprzedaż netto w tym miesiącu, najlepiej sprzedający się produkt, zamówienia do realizacji i wstrzymane, niski stan magazynowy",
+					"width": 615
+				},
+				{
+					"type": "p",
+					"text": "**Status WooCommerce**: sprzedaż w tym miesiącu, liczba zamówień do realizacji i wstrzymanych oraz produkty, które się kończą. Kliknięcie wiersza otwiera odpowiednią listę."
+				},
+				{
+					"type": "p",
+					"text": "**W skrócie** i **Aktywność**: liczba opublikowanych stron i wpisów oraz ostatnie zmiany w treściach."
+				},
+				{
+					"type": "p",
+					"text": "**Stan witryny**: informacja, czy sklep wymaga uwagi administratora."
+				},
+				{
+					"type": "p",
+					"text": "Widżet można przeciągnąć w inne miejsce za jego nagłówek albo zwinąć strzałką w prawym górnym rogu."
+				},
+				{
+					"type": "h",
+					"text": "Opcje ekranu i Pomoc"
+				},
+				{
+					"type": "image",
+					"image": "kokpit-opcje-ekranu-pomoc.webp",
+					"alt": "Prawy górny róg obszaru roboczego z zaznaczonymi przyciskami Opcje ekranu i Pomoc",
+					"width": 364
+				},
+				{
+					"type": "p",
+					"text": "**Opcje ekranu** decydują, co widać na bieżącym ekranie: które widżety, kolumny tabeli albo ile pozycji na stronie. Każdy ekran ma własny zestaw opcji."
+				},
+				{
+					"type": "p",
+					"text": "**Pomoc** rozwija krótki opis bieżącego ekranu."
+				},
+				{
+					"type": "p",
+					"text": "Na ekranach WooCommerce zamiast tych przycisków są ikony w prawym górnym rogu; koło zębate otwiera opcje ekranu."
+				},
+				{
+					"type": "h",
+					"text": "Kokpit na telefonie"
+				},
+				{
+					"type": "step",
+					"text": "Na telefonie menu jest schowane. Dotknij ikony z trzema kreskami w lewym górnym rogu.",
+					"image": "kokpit-telefon.webp",
+					"alt": "Kokpit na telefonie z zaznaczoną ikoną trzech kresek w lewym górnym rogu",
+					"width": 300
+				},
+				{
+					"type": "step",
+					"text": "Menu wysunie się z lewej strony. Dotknięcie pozycji rozwija jej podstrony.",
+					"image": "kokpit-telefon-menu.webp",
+					"alt": "Kokpit na telefonie z rozwiniętym menu po lewej stronie",
+					"width": 300
+				}
+			],
+			"keywords": [
+				"logowanie",
+				"hasło",
+				"panel",
+				"zaplecze",
+				"menu",
+				"pasek",
+				"wyloguj",
+				"widżet",
+				"opcje ekranu",
+				"pomoc",
+				"telefon",
+				"wp-admin"
+			],
+			"links": [
+				{
+					"text": "Kokpit → Strona główna",
+					"path": "index.php",
+					"cap": "read"
+				},
+				{
+					"text": "Twój profil",
+					"path": "profile.php",
+					"cap": "read"
+				}
+			],
+			"related": [
+				"lista-zamowien"
+			]
+		},
 		{
 			"id": "lista-zamowien",
 			"category": "zamowienia",
