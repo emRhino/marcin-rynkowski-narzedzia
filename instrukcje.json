@@ -257,7 +257,8 @@
 				}
 			],
 			"related": [
-				"szukanie-zamowien"
+				"szukanie-zamowien",
+				"ekran-zamowienia"
 			]
 		},
 		{
@@ -396,7 +397,201 @@
 				}
 			],
 			"related": [
-				"lista-zamowien"
+				"lista-zamowien",
+				"ekran-zamowienia"
+			]
+		},
+		{
+			"id": "ekran-zamowienia",
+			"category": "zamowienia",
+			"title": "Ekran zamówienia: co gdzie jest",
+			"text": "Ekran zamówienia pokazuje wszystko o jednym zamówieniu: dane klienta, adresy, kupione produkty, kwoty i historię zmian. Na tym ekranie zmienia się też status zamówienia i dodaje notatki.",
+			"body": [
+				{
+					"type": "h",
+					"text": "Jak otworzyć zamówienie"
+				},
+				{
+					"type": "step",
+					"text": "Wejdź w **WooCommerce → Zamówienia**."
+				},
+				{
+					"type": "step",
+					"text": "Kliknij numer i nazwisko w kolumnie **Zamówienie**.",
+					"image": "ekran-zamowienia-otwarcie.webp",
+					"alt": "Wiersz na liście zamówień z zaznaczonym numerem i nazwiskiem klienta",
+					"width": 406
+				},
+				{
+					"type": "h",
+					"text": "Układ ekranu"
+				},
+				{
+					"type": "image",
+					"image": "ekran-zamowienia-caly.webp",
+					"alt": "Cały ekran Edytuj zamówienie: po lewej dane zamówienia, lista produktów i panel Uprawnienia produktu do pobrania, po prawej panele Akcje, Atrybucja, Historia klienta i Notatki"
+				},
+				{
+					"type": "p",
+					"text": "Po lewej stronie są dane zamówienia, lista produktów z kwotami i panel **Uprawnienia produktu do pobrania**. Ten ostatni dotyczy tylko sklepów, które sprzedają pliki; w pozostałych jest pusty. Po prawej stronie są panele **Akcje**, **Atrybucja**, **Historia klienta** i **Notatki**."
+				},
+				{
+					"type": "note",
+					"text": "**Dobrze wiedzieć:** inne wtyczki dodają na tym ekranie własne panele, np. do nadawania paczek albo wystawiania faktur. Każdy panel można zwinąć strzałką w jego prawym górnym rogu."
+				},
+				{
+					"type": "h",
+					"text": "Dane zamówienia"
+				},
+				{
+					"type": "image",
+					"image": "ekran-zamowienia-dane.webp",
+					"alt": "Górna część ekranu zamówienia: numer, sposób płatności, kolumny Ogólne, Dane do faktury i Wysyłka; przy polu Klient linki Zobacz inne zamówienia i Profil"
+				},
+				{
+					"type": "p",
+					"text": "Na górze jest numer zamówienia, a pod nim sposób płatności, data zapłaty (jeśli zamówienie jest opłacone) i adres IP klienta."
+				},
+				{
+					"type": "p",
+					"text": "**Ogólne**: data i godzina złożenia zamówienia, status oraz klient. Jeśli klient ma konto w sklepie, w polu **Klient** jest jego nazwisko, a nad polem linki **Zobacz inne zamówienia** (lista zamówień tego klienta) i **Profil** (jego konto). „Gość” w tym polu oznacza zakup bez konta."
+				},
+				{
+					"type": "p",
+					"text": "**Dane do faktury**: imię i nazwisko, adres, adres e-mail i telefon podane przy zamówieniu."
+				},
+				{
+					"type": "p",
+					"text": "**Wysyłka**: adres dostawy i telefon. Jeśli klient wpisał uwagi do zamówienia, są tutaj pod napisem „Uwagi od klienta”."
+				},
+				{
+					"type": "p",
+					"text": "Ikona ołówka przy **Dane do faktury** i **Wysyłka** otwiera pola do zmiany tych danych."
+				},
+				{
+					"type": "h",
+					"text": "Produkty i kwoty"
+				},
+				{
+					"type": "image",
+					"image": "ekran-zamowienia-produkty.webp",
+					"alt": "Lista produktów w zamówieniu z ceną, ilością i kwotą, wiersz wysyłki, podsumowanie kwot i przycisk Zwrot"
+				},
+				{
+					"type": "p",
+					"text": "Każdy kupiony produkt ma osobny wiersz: zdjęcie, nazwę, SKU, cenę za sztukę, ilość i kwotę łączną. Kliknięcie nazwy otwiera edycję produktu."
+				},
+				{
+					"type": "p",
+					"text": "Pod produktami jest wiersz z wybranym sposobem dostawy i jego kosztem."
+				},
+				{
+					"type": "p",
+					"text": "Podsumowanie pokazuje **Sumę pozycji** (same produkty), **Wysyłkę** i **Sumę zamówienia**. Przy opłaconym zamówieniu jest też wiersz **Zapłacono** z datą i sposobem płatności. Kupon, podatek i zwrot mają w podsumowaniu własne wiersze, jeśli występują w zamówieniu."
+				},
+				{
+					"type": "p",
+					"text": "Przycisk **Zwrot** służy do zwrotu pieniędzy i jest dostępny także przy zamówieniach już opłaconych. Przy zamówieniach „Oczekujących na płatność” i „Wstrzymanych” są tu też przyciski **Dodaj element(y)**, **Wykorzystaj kupon** i **Przelicz**. Przy pozostałych statusach produktów i kwot nie da się już zmienić; widać wtedy napis „Tego zamówienia nie można już edytować.”."
+				},
+				{
+					"type": "h",
+					"text": "Panel Akcje"
+				},
+				{
+					"type": "image",
+					"image": "ekran-zamowienia-akcje.webp",
+					"alt": "Panel Akcje: lista Wybierz akcję, link Przenieś do kosza i zaznaczony przycisk Aktualizuj",
+					"width": 360
+				},
+				{
+					"type": "p",
+					"text": "**Aktualizuj** zapisuje zmiany zrobione na ekranie. Zmiana statusu, daty albo adresu zaczyna obowiązywać dopiero po kliknięciu tego przycisku."
+				},
+				{
+					"type": "p",
+					"text": "Lista **Wybierz akcję…** zawiera m.in. pozycje „Wyślij szczegóły zamówienia do klienta” i „Wyślij ponownie e-mail o nowym zamówieniu”. Po wybraniu pozycji kliknij przycisk ze strzałką obok listy."
+				},
+				{
+					"type": "p",
+					"text": "**Przenieś do kosza** usuwa zamówienie z listy. Zamówienie z kosza można przywrócić."
+				},
+				{
+					"type": "h",
+					"text": "Panele Atrybucja i Historia klienta"
+				},
+				{
+					"type": "image",
+					"image": "ekran-zamowienia-historia-klienta.webp",
+					"alt": "Panel Historia klienta z liczbą zamówień, łącznym przychodem i średnią wartością zamówienia",
+					"width": 340
+				},
+				{
+					"type": "p",
+					"text": "**Atrybucja** pokazuje pochodzenie zamówienia, czyli skąd klient trafił do sklepu, oraz rodzaj urządzenia i liczbę stron obejrzanych przed zakupem, jeśli sklep zdołał to ustalić."
+				},
+				{
+					"type": "p",
+					"text": "**Historia klienta** pokazuje, ile zamówień złożył ten klient, za jaką łączną kwotę i jaka jest średnia wartość jego zamówienia."
+				},
+				{
+					"type": "h",
+					"text": "Panel Notatki"
+				},
+				{
+					"type": "image",
+					"image": "ekran-zamowienia-notatki.webp",
+					"alt": "Panel Notatki: pole Dodaj adnotację, lista Widoczność i lista notatek: szare notatki sklepu, biała notatka prywatna i notatka z etykietą Wysłano do klienta",
+					"width": 330
+				},
+				{
+					"type": "p",
+					"text": "Na liście są trzy rodzaje notatek. Najnowsza jest na górze, a pod każdą jest data i godzina."
+				},
+				{
+					"type": "p",
+					"text": "**Notatki sklepu** mają szare tło. Sklep dodaje je sam przy każdym zdarzeniu: zmianie statusu, wysłaniu e-maila, zmniejszeniu stanu magazynowego. Klient ich nie widzi."
+				},
+				{
+					"type": "p",
+					"text": "**Notatki prywatne** mają białe tło i podpis osoby, która je dodała. Widzi je tylko obsługa sklepu."
+				},
+				{
+					"type": "p",
+					"text": "**Notatki do klienta** mają na górze etykietę „Wysłano do klienta”. Klient dostaje je e-mailem i widzi w szczegółach zamówienia na swoim koncie."
+				},
+				{
+					"type": "p",
+					"text": "W polu **Dodaj adnotację** wpisuje się własną notatkę. Lista **Widoczność** decyduje o jej rodzaju: „Prywatna notka” albo „Publiczna informacja dla klienta”."
+				},
+				{
+					"type": "note",
+					"text": "**Dobrze wiedzieć:** link **Usuń** pod notatką kasuje ją z zamówienia. Usunięcie notatki do klienta nie cofa e-maila, który został już wysłany."
+				}
+			],
+			"keywords": [
+				"zamówienie",
+				"szczegóły",
+				"adres",
+				"dane do faktury",
+				"wysyłka",
+				"produkty",
+				"notatki",
+				"aktualizuj",
+				"historia klienta",
+				"atrybucja",
+				"profil klienta",
+				"pliki do pobrania"
+			],
+			"links": [
+				{
+					"text": "WooCommerce → Zamówienia",
+					"path": "admin.php?page=wc-orders",
+					"cap": "edit_shop_orders"
+				}
+			],
+			"related": [
+				"lista-zamowien",
+				"szukanie-zamowien"
 			]
 		}
 	]
