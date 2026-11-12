@@ -546,7 +546,7 @@
 					"text": "W polu nad tabelą, po prawej stronie, wpisz numer zamówienia, nazwisko, adres e-mail, telefon, miasto albo nazwę produktu.",
 					"image": "szukanie-pole.webp",
 					"alt": "Pole wyszukiwania nad tabelą zamówień, obok niego lista z wybraną pozycją Wszystko i przycisk Szukaj zamówień",
-					"width": 660
+					"width": 662
 				},
 				{
 					"type": "step",
@@ -919,7 +919,7 @@
 					"text": "W polu **Status** wybierz **W trakcie realizacji**.",
 					"image": "proces-zmiana-statusu.webp",
 					"alt": "Rozwinięta lista statusów na ekranie zamówienia z zaznaczoną pozycją W trakcie realizacji",
-					"width": 500
+					"width": 475
 				},
 				{
 					"type": "step",
@@ -1039,7 +1039,7 @@
 					"text": "Otwórz zamówienie i w polu **Status** wybierz nowy status.",
 					"image": "proces-zmiana-statusu.webp",
 					"alt": "Rozwinięta lista statusów na ekranie zamówienia",
-					"width": 500
+					"width": 475
 				},
 				{
 					"type": "step",
