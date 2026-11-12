@@ -1410,7 +1410,377 @@
 				}
 			],
 			"related": [
+				"nowy-produkt-prosty",
 				"kokpit"
+			]
+		},
+		{
+			"id": "nowy-produkt-prosty",
+			"category": "produkty",
+			"title": "Nowy produkt prosty krok po kroku",
+			"text": "Produkt prosty to jedna rzecz w jednej wersji, z jedną ceną. Pierwsza część artykułu prowadzi krok po kroku od pustego formularza do produktu widocznego w sklepie. Druga część opisuje wszystkie pola formularza.",
+			"body": [
+				{
+					"type": "h",
+					"text": "1. Otwórz formularz nowego produktu"
+				},
+				{
+					"type": "step",
+					"text": "Wejdź w **Produkty → Wszystkie produkty** i kliknij **Utwórz produkt** obok nagłówka. Ta sama pozycja jest też w menu: **Produkty → Utwórz produkt**.",
+					"image": "nowy-produkt-utworz.webp",
+					"alt": "Nagłówek listy produktów z zaznaczonym przyciskiem Utwórz produkt",
+					"width": 380
+				},
+				{
+					"type": "h",
+					"text": "2. Wpisz nazwę"
+				},
+				{
+					"type": "step",
+					"text": "W pierwszym polu na górze wpisz nazwę produktu. Pod tą nazwą klient zobaczy produkt w sklepie.",
+					"image": "nowy-produkt-nazwa.webp",
+					"alt": "Formularz produktu z zaznaczonym polem nazwy, w którym wpisano Miseczka Poranek 12 cm"
+				},
+				{
+					"type": "h",
+					"text": "3. Dodaj opis"
+				},
+				{
+					"type": "step",
+					"text": "W polu **Opis produktu** wpisz pełny opis: z czego produkt jest zrobiony, jakie ma wymiary, do czego służy, jak o niego dbać.",
+					"image": "nowy-produkt-opis.webp",
+					"alt": "Pole Opis produktu z dwoma akapitami tekstu"
+				},
+				{
+					"type": "h",
+					"text": "4. Ustaw cenę"
+				},
+				{
+					"type": "step",
+					"text": "W panelu **Dane produktu** zostaw typ **Prosty produkt**; jest wybrany domyślnie."
+				},
+				{
+					"type": "step",
+					"text": "W zakładce **Ogólne** wpisz cenę w polu **Cena (zł)**. Pole **Cena promocyjna (zł)** zostaw puste, jeśli produkt nie jest przeceniony.",
+					"image": "nowy-produkt-cena.webp",
+					"alt": "Zakładka Ogólne w panelu Dane produktu z zaznaczonym polem Cena, w którym wpisano 39"
+				},
+				{
+					"type": "h",
+					"text": "5. Dodaj krótki opis"
+				},
+				{
+					"type": "step",
+					"text": "W polu **Krótki opis produktu** wpisz jedno albo dwa zdania z najważniejszymi informacjami.",
+					"image": "nowy-produkt-krotki-opis.webp",
+					"alt": "Pole Krótki opis produktu z jednym zdaniem tekstu"
+				},
+				{
+					"type": "note",
+					"text": "**Dobrze wiedzieć:** o tym, w którym miejscu strony produktu pokazuje się opis, a w którym krótki opis, decyduje motyw sklepu. Po dodaniu pierwszego produktu sprawdź to na jego stronie."
+				},
+				{
+					"type": "h",
+					"text": "6. Wybierz kategorię"
+				},
+				{
+					"type": "step",
+					"text": "W panelu **Kategorie produktów** po prawej stronie zaznacz kategorię. Produkt bez zaznaczonej kategorii trafia do kategorii „Bez kategorii”.",
+					"image": "nowy-produkt-kategorie.webp",
+					"alt": "Panel Kategorie produktów z zaznaczoną kategorią Na stół",
+					"width": 340
+				},
+				{
+					"type": "h",
+					"text": "7. Dodaj zdjęcie"
+				},
+				{
+					"type": "step",
+					"text": "W panelu **Obrazek produktu** po prawej stronie kliknij **Ustaw obrazek produktu**."
+				},
+				{
+					"type": "step",
+					"text": "Wybierz zdjęcie z biblioteki mediów albo wgraj nowe z komputera, a potem kliknij przycisk **Ustaw obrazek produktu**. To zdjęcie główne: widać je na liście produktów i na stronie produktu.",
+					"image": "nowy-produkt-obrazek.webp",
+					"alt": "Panel Obrazek produktu z ustawionym zdjęciem miseczki i linkiem Usuń obrazek produktu",
+					"width": 340
+				},
+				{
+					"type": "h",
+					"text": "8. Opublikuj produkt"
+				},
+				{
+					"type": "step",
+					"text": "W panelu **Opublikuj** po prawej stronie kliknij **Opublikuj**. Od tej chwili produkt jest widoczny w sklepie.",
+					"image": "nowy-produkt-opublikuj.webp",
+					"alt": "Panel Opublikuj z przyciskami Zapisz szkic i Podejrzyj oraz zaznaczonym przyciskiem Opublikuj",
+					"width": 340
+				},
+				{
+					"type": "p",
+					"text": "**Zapisz szkic** zapisuje produkt bez pokazywania go w sklepie; można do niego wrócić później. **Podejrzyj** otwiera stronę produktu w takim stanie, w jakim jest teraz, widoczną tylko dla Ciebie."
+				},
+				{
+					"type": "h",
+					"text": "9. Sprawdź produkt w sklepie"
+				},
+				{
+					"type": "step",
+					"text": "Po opublikowaniu na górze ekranu pojawia się komunikat „Produkt został opublikowany.”. Kliknij w nim **Zobacz produkt**.",
+					"image": "nowy-produkt-opublikowany.webp",
+					"alt": "Komunikat Produkt został opublikowany z zaznaczonym linkiem Zobacz produkt"
+				},
+				{
+					"type": "step",
+					"text": "Sprawdź na stronie produktu nazwę, cenę, zdjęcie i opisy.",
+					"image": "nowy-produkt-sklep.webp",
+					"alt": "Strona produktu w sklepie: zdjęcie miseczki, nazwa, cena 39 zł, przycisk Dodaj do koszyka i opis"
+				},
+				{
+					"type": "h",
+					"text": "Wszystkie pola formularza"
+				},
+				{
+					"type": "p",
+					"text": "Do opublikowania produktu wystarczą pola z punktów 1–8. Poniżej jest opis wszystkich pól formularza, panel po panelu."
+				},
+				{
+					"type": "h",
+					"text": "Górna część formularza"
+				},
+				{
+					"type": "image",
+					"image": "formularz-odnosnik.webp",
+					"alt": "Pole nazwy produktu, a pod nim zaznaczony wiersz Bezpośredni odnośnik z adresem strony produktu i przyciskiem Edytuj"
+				},
+				{
+					"type": "p",
+					"text": "**Nazwa produktu**: tytuł widoczny w sklepie, na liście produktów i w zamówieniach."
+				},
+				{
+					"type": "p",
+					"text": "**Bezpośredni odnośnik**: adres strony produktu. Sklep tworzy go z nazwy przy pierwszym zapisie. Przycisk **Edytuj** pozwala zmienić końcówkę adresu; późniejsza zmiana nazwy produktu nie zmienia adresu."
+				},
+				{
+					"type": "p",
+					"text": "**Opis produktu**: pełny opis. Można w nim używać nagłówków, list, pogrubień i zdjęć (przycisk **Dodaj medium**)."
+				},
+				{
+					"type": "p",
+					"text": "**Krótki opis produktu**: jedno albo dwa zdania streszczenia, w osobnym panelu pod „Danymi produktu”."
+				},
+				{
+					"type": "h",
+					"text": "Dane produktu: Ogólne"
+				},
+				{
+					"type": "p",
+					"text": "**Cena (zł)**: cena podstawowa."
+				},
+				{
+					"type": "p",
+					"text": "**Cena promocyjna (zł)**: cena po obniżce. Gdy jest wpisana, klient widzi ją obok przekreślonej ceny podstawowej. Link **Harmonogram** otwiera pola „Od…” i „Do…”, w których ustawia się daty początku i końca promocji."
+				},
+				{
+					"type": "p",
+					"text": "**Status podatku** i **Klasa podatkowa**: pojawiają się tylko wtedy, gdy w sklepie włączone jest naliczanie podatków."
+				},
+				{
+					"type": "h",
+					"text": "Dane produktu: Magazyn"
+				},
+				{
+					"type": "image",
+					"image": "formularz-magazyn-stan.webp",
+					"alt": "Zakładka Magazyn z polami SKU, GTIN, zaznaczonym Zarządzaniem stanem magazynowym, polem Ilość, wyborem zamówień oczekujących, Niskim progiem zapasów i polem Sprzedawany pojedynczo"
+				},
+				{
+					"type": "p",
+					"text": "**SKU**: własny kod produktu, np. symbol z magazynu. Musi być inny dla każdego produktu. **GTIN, UPC, EAN, lub ISBN**: kod kreskowy produktu."
+				},
+				{
+					"type": "p",
+					"text": "**Zarządzanie stanem magazynowym**: po zaznaczeniu sklep liczy sztuki. Pojawiają się wtedy pola **Ilość** (liczba sztuk na stanie), **Zezwalać na zamówienia oczekujące?** (czy można kupić produkt, którego nie ma na stanie) i **Niski próg zapasów** (liczba sztuk, przy której sklep wysyła powiadomienie e-mailem)."
+				},
+				{
+					"type": "p",
+					"text": "**Stan magazynowy**: widoczny, gdy zarządzanie stanem jest odznaczone. Ręczny wybór: „Na stanie”, „Brak w magazynie” albo „Na zamówienie”."
+				},
+				{
+					"type": "p",
+					"text": "**Sprzedawany pojedynczo**: w jednym zamówieniu można kupić najwyżej jedną sztukę."
+				},
+				{
+					"type": "h",
+					"text": "Dane produktu: Wysyłka"
+				},
+				{
+					"type": "image",
+					"image": "formularz-wysylka.webp",
+					"alt": "Zakładka Wysyłka z polami Waga, Wymiary i Klasa wysyłkowa"
+				},
+				{
+					"type": "p",
+					"text": "**Waga (kg)** i **Wymiary (cm)**: długość, szerokość i wysokość. Korzystają z nich sposoby dostawy, które liczą koszt według wagi albo rozmiaru."
+				},
+				{
+					"type": "p",
+					"text": "**Klasa wysyłkowa**: grupa produktów wysyłanych na tych samych zasadach, np. produkty duże albo kruche."
+				},
+				{
+					"type": "h",
+					"text": "Dane produktu: Powiązane produkty"
+				},
+				{
+					"type": "image",
+					"image": "formularz-powiazane.webp",
+					"alt": "Zakładka Powiązane produkty z polami Sprzedaż dodatkowa i Sprzedaż krzyżowa"
+				},
+				{
+					"type": "p",
+					"text": "**Sprzedaż dodatkowa**: produkty polecane na stronie tego produktu zamiast niego, np. większe albo lepsze."
+				},
+				{
+					"type": "p",
+					"text": "**Sprzedaż krzyżowa**: produkty polecane w koszyku jako uzupełnienie tego produktu."
+				},
+				{
+					"type": "h",
+					"text": "Dane produktu: Atrybuty"
+				},
+				{
+					"type": "image",
+					"image": "formularz-atrybuty.webp",
+					"alt": "Zakładka Atrybuty z przyciskami Utwórz i Dodaj globalny"
+				},
+				{
+					"type": "p",
+					"text": "Atrybuty to cechy produktu, np. materiał albo kolor. **Dodaj globalny** wybiera atrybut z listy wspólnej dla całego sklepu, a **Utwórz** dodaje atrybut tylko dla tego produktu. Atrybuty mają osobne lekcje."
+				},
+				{
+					"type": "h",
+					"text": "Dane produktu: Zaawansowane"
+				},
+				{
+					"type": "image",
+					"image": "formularz-zaawansowane.webp",
+					"alt": "Zakładka Zaawansowane z polami Notatka do zakupu, Kolejność w menu, Włącz opinie i Dostępne dla punktu kasowego"
+				},
+				{
+					"type": "p",
+					"text": "**Notatka do zakupu**: tekst, który klient zobaczy po zakupie tego produktu, na stronie potwierdzenia zamówienia i w e-mailach, np. wskazówka dotycząca użytkowania."
+				},
+				{
+					"type": "p",
+					"text": "**Kolejność w menu**: liczba ustalająca pozycję produktu na liście przy sortowaniu domyślnym. Produkt z niższą liczbą jest wyżej."
+				},
+				{
+					"type": "p",
+					"text": "**Włącz opinie**: czy klienci mogą oceniać ten produkt. **Dostępne dla punktu kasowego (POS)**: czy produkt jest widoczny w sprzedaży stacjonarnej WooCommerce."
+				},
+				{
+					"type": "h",
+					"text": "Panel Opublikuj"
+				},
+				{
+					"type": "image",
+					"image": "formularz-opublikuj.webp",
+					"alt": "Panel Opublikuj z rozwiniętym wyborem widoczności w katalogu: Sklep i wyniki wyszukiwania, Tylko sklep, Tylko wyniki wyszukiwania, Ukryty oraz polem To jest wyróżniony produkt",
+					"width": 330
+				},
+				{
+					"type": "p",
+					"text": "**Status**: „Szkic” albo „Oczekuje na przegląd”; po publikacji „Opublikowano”. **Widoczność**: „Publiczne”, „Zabezpieczono hasłem” (strona produktu wymaga hasła) albo „Prywatne” (produkt widzi tylko obsługa sklepu)."
+				},
+				{
+					"type": "p",
+					"text": "**Data publikacji**: po kliknięciu „Edytuj” można ustawić datę w przyszłości. Produkt pojawi się wtedy w sklepie sam, o wybranej godzinie."
+				},
+				{
+					"type": "p",
+					"text": "**Widoczność w katalogu**: gdzie produkt się pokazuje. „Sklep i wyniki wyszukiwania” (domyślnie), „Tylko sklep”, „Tylko wyniki wyszukiwania” albo „Ukryty” (dostępny tylko pod własnym adresem). Pole **To jest wyróżniony produkt** oznacza produkt jako polecany."
+				},
+				{
+					"type": "p",
+					"text": "**Skopiuj do nowego szkicu** tworzy kopię produktu. **Przenieś do kosza** usuwa produkt ze sklepu; z kosza można go przywrócić."
+				},
+				{
+					"type": "h",
+					"text": "Obrazek i galeria"
+				},
+				{
+					"type": "image",
+					"image": "formularz-galeria.webp",
+					"alt": "Panel Galeria produktu z linkiem Dodaj galerię obrazków produktu",
+					"width": 340
+				},
+				{
+					"type": "p",
+					"text": "**Obrazek produktu** to zdjęcie główne. **Galeria produktu** to dodatkowe zdjęcia widoczne na stronie produktu; dodaje się je linkiem **Dodaj galerię obrazków produktu**."
+				},
+				{
+					"type": "h",
+					"text": "Kategorie, znaczniki i marki"
+				},
+				{
+					"type": "image",
+					"image": "formularz-znaczniki.webp",
+					"alt": "Panel Znaczniki produktu z polem do wpisania znacznika, przyciskiem Dodaj i listą przypisanych znaczników",
+					"width": 340
+				},
+				{
+					"type": "p",
+					"text": "**Kategorie produktów**: działy sklepu. Produkt może należeć do kilku. Link **+ Utwórz kategorię** dodaje nową bez wychodzenia z formularza."
+				},
+				{
+					"type": "p",
+					"text": "**Znaczniki produktu**: dodatkowe słowa, po których można grupować produkty. Wpisz znacznik i kliknij **Dodaj**; kilka naraz oddziel przecinkami."
+				},
+				{
+					"type": "p",
+					"text": "**Marki produktów**: marka albo producent. Zaznacza się ją tak samo jak kategorię."
+				},
+				{
+					"type": "note",
+					"text": "**Dobrze wiedzieć:** w Twoim sklepie formularz może mieć dodatkowe panele, zakładki i pola. Dodają je inne wtyczki. Panele można zwijać strzałką w nagłówku, a w **Opcjach ekranu** włączać i wyłączać."
+				}
+			],
+			"keywords": [
+				"dodaj produkt",
+				"nowy produkt",
+				"utwórz produkt",
+				"nazwa",
+				"cena",
+				"promocja",
+				"opis",
+				"krótki opis",
+				"kategoria",
+				"znacznik",
+				"marka",
+				"zdjęcie",
+				"galeria",
+				"magazyn",
+				"SKU",
+				"wysyłka",
+				"waga",
+				"atrybuty",
+				"opublikuj",
+				"szkic"
+			],
+			"links": [
+				{
+					"text": "Produkty → Utwórz produkt",
+					"path": "post-new.php?post_type=product",
+					"cap": "edit_products"
+				},
+				{
+					"text": "Produkty → Wszystkie produkty",
+					"path": "edit.php?post_type=product",
+					"cap": "edit_products"
+				}
+			],
+			"related": [
+				"typy-produktow"
 			]
 		}
 	]
