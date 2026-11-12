@@ -591,7 +591,345 @@
 			],
 			"related": [
 				"lista-zamowien",
-				"szukanie-zamowien"
+				"szukanie-zamowien",
+				"od-wplaty-do-wysylki"
+			]
+		},
+		{
+			"id": "od-wplaty-do-wysylki",
+			"category": "zamowienia",
+			"title": "Nowe zamówienie od wpłaty do wysyłki",
+			"text": "Zamówienie przechodzi od złożenia do wysyłki przez kilka statusów. Część zmian sklep robi sam. Dwie należą do obsługi sklepu: potwierdzenie wpłaty przy przelewie tradycyjnym i oznaczenie zamówienia jako zrealizowanego po wysyłce.",
+			"body": [
+				{
+					"type": "h",
+					"text": "Skąd wiadomo o nowym zamówieniu"
+				},
+				{
+					"type": "p",
+					"text": "Po każdym zamówieniu sklep wysyła na adres sklepu e-mail „Nowe zamówienie”. Zamówienie pojawia się też na górze listy w **WooCommerce → Zamówienia**."
+				},
+				{
+					"type": "h",
+					"text": "1. Sprawdź status zamówienia"
+				},
+				{
+					"type": "image",
+					"image": "proces-lista-wstrzymane.webp",
+					"alt": "Lista zamówień z zaznaczonym statusem Wstrzymane przy nowym zamówieniu"
+				},
+				{
+					"type": "p",
+					"text": "**W trakcie realizacji**: zamówienie jest opłacone albo płatne przy odbiorze. Przejdź do punktu 3."
+				},
+				{
+					"type": "p",
+					"text": "**Wstrzymane (oczekujące na płatność)**: klient wybrał przelew tradycyjny i sklep czeka na wpłatę. Klient dostał już e-mail „Zamówienie wstrzymane”. Przejdź do punktu 2."
+				},
+				{
+					"type": "p",
+					"text": "**Oczekujące na płatność** albo **Nieudane**: płatność online nie doszła do skutku. Nie wysyłaj towaru."
+				},
+				{
+					"type": "note",
+					"text": "**Dobrze wiedzieć:** płatności online (szybki przelew, karta, BLIK) sklep potwierdza sam. Takie zamówienie od razu dostaje status „W trakcie realizacji”."
+				},
+				{
+					"type": "h",
+					"text": "2. Potwierdź wpłatę przy przelewie tradycyjnym"
+				},
+				{
+					"type": "step",
+					"text": "Sprawdź na rachunku bankowym, czy wpłata dotarła i czy zgadza się kwota."
+				},
+				{
+					"type": "step",
+					"text": "Otwórz zamówienie. Sposób płatności jest w wierszu pod numerem zamówienia.",
+					"image": "proces-sposob-platnosci.webp",
+					"alt": "Górna część ekranu zamówienia z zaznaczonym wierszem Płatność przez: Przelew bankowy"
+				},
+				{
+					"type": "step",
+					"text": "W polu **Status** wybierz **W trakcie realizacji**.",
+					"image": "proces-zmiana-statusu.webp",
+					"alt": "Rozwinięta lista statusów na ekranie zamówienia z zaznaczoną pozycją W trakcie realizacji",
+					"width": 500
+				},
+				{
+					"type": "step",
+					"text": "Kliknij **Aktualizuj** w panelu **Akcje**. Bez tego zmiana statusu nie zostanie zapisana.",
+					"image": "ekran-zamowienia-akcje.webp",
+					"alt": "Panel Akcje z zaznaczonym przyciskiem Aktualizuj",
+					"width": 360
+				},
+				{
+					"type": "p",
+					"text": "Po zapisaniu sklep wysyła klientowi e-mail „Zamówienie w trakcie realizacji” i zapisuje datę zapłaty. Obie rzeczy widać na ekranie zamówienia: e-mail i zmianę statusu w panelu **Notatki**, a datę w wierszu pod numerem zamówienia."
+				},
+				{
+					"type": "image",
+					"image": "proces-notatki-realizacja.webp",
+					"alt": "Panel Notatki z zaznaczoną notatką Wysłano e-mail Zamówienie w trakcie realizacji; pod nią notatka o zmianie statusu",
+					"width": 407
+				},
+				{
+					"type": "image",
+					"image": "proces-data-zaplaty.webp",
+					"alt": "Górna część ekranu zamówienia z zaznaczonym wierszem, w którym po sposobie płatności jest data i godzina zapłaty"
+				},
+				{
+					"type": "h",
+					"text": "3. Spakuj i wyślij zamówienie"
+				},
+				{
+					"type": "p",
+					"text": "Na ekranie zamówienia sprawdź listę produktów z ilościami, adres w kolumnie **Wysyłka** i uwagi od klienta, jeśli je wpisał."
+				},
+				{
+					"type": "p",
+					"text": "Stanu magazynowego nie trzeba zmieniać ręcznie. Sklep zmniejszył go już wtedy, gdy zamówienie dostało status „Wstrzymane” albo „W trakcie realizacji”."
+				},
+				{
+					"type": "h",
+					"text": "4. Oznacz zamówienie jako zrealizowane"
+				},
+				{
+					"type": "step",
+					"text": "Po nadaniu paczki otwórz zamówienie i w polu **Status** wybierz **Zrealizowane**."
+				},
+				{
+					"type": "step",
+					"text": "Kliknij **Aktualizuj**."
+				},
+				{
+					"type": "p",
+					"text": "Sklep wysyła klientowi e-mail „Zrealizowane zamówienie”. Dla klienta to informacja, że zamówienie zostało wysłane."
+				},
+				{
+					"type": "image",
+					"image": "proces-notatki-zrealizowane.webp",
+					"alt": "Panel Notatki z zaznaczoną notatką o zmianie statusu na Zrealizowane; pod nią notatka Wysłano e-mail Zrealizowane zamówienie",
+					"width": 407
+				},
+				{
+					"type": "p",
+					"text": "Na liście zamówień zamówienie ma teraz status **Zrealizowane**."
+				},
+				{
+					"type": "image",
+					"image": "proces-lista-zrealizowane.webp",
+					"alt": "Lista zamówień z zaznaczonym statusem Zrealizowane przy tym samym zamówieniu"
+				},
+				{
+					"type": "note",
+					"text": "**Dobrze wiedzieć:** sklep nie zmienia sam statusu na „Zrealizowane”. Wyjątkiem są zamówienia, w których są wyłącznie pliki do pobrania: te sklep kończy sam zaraz po opłaceniu."
+				},
+				{
+					"type": "h",
+					"text": "Szybsza zmiana statusu z listy"
+				},
+				{
+					"type": "p",
+					"text": "Status można też zmienić bez otwierania zamówienia: przyciskiem w okienku podglądu (ikona oka) albo przyciskami w kolumnie **Działania**. Oba sposoby opisuje lekcja „Lista zamówień: kolumny i statusy”."
+				}
+			],
+			"keywords": [
+				"nowe zamówienie",
+				"przelew",
+				"wpłata",
+				"status",
+				"w trakcie realizacji",
+				"zrealizowane",
+				"wysyłka",
+				"pakowanie",
+				"e-mail do klienta",
+				"aktualizuj"
+			],
+			"links": [
+				{
+					"text": "WooCommerce → Zamówienia",
+					"path": "admin.php?page=wc-orders",
+					"cap": "edit_shop_orders"
+				}
+			],
+			"related": [
+				"lista-zamowien",
+				"ekran-zamowienia",
+				"zmiana-statusu"
+			]
+		},
+		{
+			"id": "zmiana-statusu",
+			"category": "zamowienia",
+			"title": "Zmiana statusu i co wtedy dostaje klient",
+			"text": "Status zamówienia zmienia się w trzech miejscach kokpitu. Prawie każda zmiana wysyła e-mail: do klienta, do sklepu albo do obu. Artykuł pokazuje, gdzie zmienić status i jaki e-mail wychodzi przy którym statusie.",
+			"body": [
+				{
+					"type": "h",
+					"text": "Zmiana statusu na ekranie zamówienia"
+				},
+				{
+					"type": "step",
+					"text": "Otwórz zamówienie i w polu **Status** wybierz nowy status.",
+					"image": "proces-zmiana-statusu.webp",
+					"alt": "Rozwinięta lista statusów na ekranie zamówienia",
+					"width": 500
+				},
+				{
+					"type": "step",
+					"text": "Kliknij **Aktualizuj** w panelu **Akcje**. Dopiero wtedy status się zmienia i wychodzi e-mail.",
+					"image": "ekran-zamowienia-akcje.webp",
+					"alt": "Panel Akcje z zaznaczonym przyciskiem Aktualizuj",
+					"width": 360
+				},
+				{
+					"type": "h",
+					"text": "Zmiana statusu z listy zamówień"
+				},
+				{
+					"type": "p",
+					"text": "**Okienko podglądu.** Kliknij ikonę oka przy zamówieniu, a potem przycisk na dole okienka: **W trakcie realizacji** albo **Zrealizowano**. Status zmienia się od razu, bez przycisku „Aktualizuj”."
+				},
+				{
+					"type": "image",
+					"image": "zamowienia-podglad.webp",
+					"alt": "Okienko podglądu zamówienia z zaznaczonym przyciskiem Zrealizowano",
+					"width": 560
+				},
+				{
+					"type": "p",
+					"text": "**Kolumna Działania.** Przycisk z trzema kropkami ustawia „W trakcie realizacji”, a przycisk ze znakiem ✓ ustawia „Zrealizowane”. Kolumna jest domyślnie wyłączona; włącza się ją w opcjach ekranu."
+				},
+				{
+					"type": "image",
+					"image": "zamowienia-kolumna-dzialania.webp",
+					"alt": "Kolumna Działania na liście zamówień z zaznaczonymi przyciskami zmiany statusu",
+					"width": 396
+				},
+				{
+					"type": "note",
+					"text": "**Dobrze wiedzieć:** e-mail wychodzi tak samo niezależnie od tego, w którym miejscu zmienisz status."
+				},
+				{
+					"type": "h",
+					"text": "Co dostaje klient"
+				},
+				{
+					"type": "p",
+					"text": "**Wstrzymane (oczekujące na płatność)**: e-mail „Zamówienie wstrzymane” z potwierdzeniem przyjęcia zamówienia."
+				},
+				{
+					"type": "p",
+					"text": "**W trakcie realizacji**: e-mail „Zamówienie w trakcie realizacji” z podsumowaniem zamówienia."
+				},
+				{
+					"type": "image",
+					"image": "status-email-realizacja.webp",
+					"alt": "E-mail do klienta po zmianie statusu na W trakcie realizacji: nagłówek Dziękujemy za złożenie zamówienia i podsumowanie zamówienia",
+					"width": 560
+				},
+				{
+					"type": "p",
+					"text": "**Zrealizowane**: e-mail „Zrealizowane zamówienie”. Klient odczytuje go jako informację o wysyłce."
+				},
+				{
+					"type": "image",
+					"image": "status-email-zrealizowane.webp",
+					"alt": "E-mail do klienta po zmianie statusu na Zrealizowane: nagłówek Dobre rzeczy zmierzają w twoją stronę i podsumowanie zamówienia",
+					"width": 560
+				},
+				{
+					"type": "p",
+					"text": "**Zwrócone**: e-mail „Zamówienie zwrócone”. Klient dostaje go także przy zwrocie części kwoty."
+				},
+				{
+					"type": "p",
+					"text": "**Nieudane**: e-mail „Nieudane zamówienie” z informacją, że płatność się nie powiodła."
+				},
+				{
+					"type": "p",
+					"text": "**Anulowano**: klient nie dostaje e-maila, dopóki w ustawieniach nie zostanie włączony e-mail „Anulowane zamówienie” dla klienta."
+				},
+				{
+					"type": "p",
+					"text": "**Oczekujące na płatność**: bez e-maila."
+				},
+				{
+					"type": "h",
+					"text": "Co dostaje sklep"
+				},
+				{
+					"type": "p",
+					"text": "**Nowe zamówienie**: gdy zamówienie pierwszy raz dostaje status „Wstrzymane” albo „W trakcie realizacji”."
+				},
+				{
+					"type": "p",
+					"text": "**Anulowane zamówienie**: gdy zamówienie zostaje anulowane."
+				},
+				{
+					"type": "p",
+					"text": "**Nieudane zamówienie**: gdy płatność się nie powiedzie."
+				},
+				{
+					"type": "h",
+					"text": "Kiedy e-mail nie wychodzi"
+				},
+				{
+					"type": "p",
+					"text": "Cofnięcie statusu z „Zrealizowane” na „W trakcie realizacji” nie wysyła e-maila."
+				},
+				{
+					"type": "p",
+					"text": "E-mail nie wychodzi też wtedy, gdy jest wyłączony w **WooCommerce → Ustawienia → E-maile**. Na tej liście widać wszystkie e-maile sklepu, ich odbiorców i to, które są włączone. Przycisk **Zarządzaj** przy e-mailu otwiera jego ustawienia, w tym włączenie i wyłączenie."
+				},
+				{
+					"type": "h",
+					"text": "Jak sprawdzić, czy e-mail został wysłany"
+				},
+				{
+					"type": "p",
+					"text": "Otwórz zamówienie i zobacz panel **Notatki**. Po każdym wysłanym e-mailu sklep dodaje notatkę „Wysłano e-mail …” z nazwą e-maila, datą i godziną."
+				},
+				{
+					"type": "image",
+					"image": "proces-notatki-zrealizowane.webp",
+					"alt": "Panel Notatki z notatką o zmianie statusu na Zrealizowane i notatką Wysłano e-mail Zrealizowane zamówienie",
+					"width": 407
+				},
+				{
+					"type": "note",
+					"text": "**Dobrze wiedzieć:** notatka potwierdza, że sklep wysłał e-mail. Nie potwierdza, że klient go dostał; wiadomość mogła trafić do spamu."
+				}
+			],
+			"keywords": [
+				"status",
+				"e-mail",
+				"powiadomienie",
+				"klient",
+				"zrealizowane",
+				"w trakcie realizacji",
+				"wstrzymane",
+				"anulowane",
+				"zwrócone",
+				"nieudane",
+				"notatki"
+			],
+			"links": [
+				{
+					"text": "WooCommerce → Zamówienia",
+					"path": "admin.php?page=wc-orders",
+					"cap": "edit_shop_orders"
+				},
+				{
+					"text": "WooCommerce → Ustawienia → E-maile",
+					"path": "admin.php?page=wc-settings&tab=email",
+					"cap": "manage_woocommerce"
+				}
+			],
+			"related": [
+				"od-wplaty-do-wysylki",
+				"lista-zamowien",
+				"ekran-zamowienia"
 			]
 		}
 	]
