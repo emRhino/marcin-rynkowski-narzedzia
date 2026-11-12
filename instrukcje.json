@@ -90,7 +90,11 @@
 				},
 				{
 					"type": "p",
-					"text": "**Pochodzenie** pokazuje, skąd klient trafił do sklepu, np. z wyszukiwarki albo po wpisaniu adresu („Bezpośrednie”). „Nieznane” znaczy, że sklep nie zdołał tego ustalić."
+					"text": "**Pochodzenie** pokazuje, skąd klient trafił do sklepu, np. z wyszukiwarki albo po wpisaniu adresu („Bezpośrednie”). „Nieznane” znaczy, że sklep nie zdołał tego ustalić. Kolumna jest widoczna tylko wtedy, gdy w sklepie działa funkcja „Atrybucja zamówień”."
+				},
+				{
+					"type": "p",
+					"text": "Dopóki sklep nie ma żadnego zamówienia, zamiast tabeli widać napis „Nowe zamówienia pojawią się w tym miejscu.” i przycisk **Dowiedz się więcej o zamówieniach**, który prowadzi do dokumentacji WooCommerce w języku angielskim."
 				},
 				{
 					"type": "note",
@@ -119,23 +123,56 @@
 				},
 				{
 					"type": "h",
+					"text": "Kolumny, które są domyślnie wyłączone"
+				},
+				{
+					"type": "p",
+					"text": "**Dane do faktury** to adres rozliczeniowy klienta, a **Wyślij do** to adres dostawy."
+				},
+				{
+					"type": "p",
+					"text": "**Działania** to przyciski zmiany statusu bez otwierania zamówienia. Przycisk z trzema kropkami ustawia status „W trakcie realizacji”, a przycisk ze znakiem ✓ („Zakończ”) status „Zrealizowane”. Przy zamówieniu widać tylko te przyciski, które mają sens dla jego obecnego statusu."
+				},
+				{
+					"type": "image",
+					"image": "zamowienia-kolumna-dzialania.webp",
+					"alt": "Kolumna Działania w tabeli zamówień: przy części zamówień przyciski z trzema kropkami i ze znakiem ✓",
+					"width": 396
+				},
+				{
+					"type": "h",
+					"text": "Jak posortować listę"
+				},
+				{
+					"type": "step",
+					"text": "Kliknij nagłówek kolumny **Zamówienie**, **Data** albo **Łącznie**. Lista ułoży się według tej kolumny.",
+					"image": "zamowienia-sortowanie.webp",
+					"alt": "Nagłówek kolumny Data ze strzałkami sortowania",
+					"width": 380
+				},
+				{
+					"type": "step",
+					"text": "Kliknij ten sam nagłówek jeszcze raz, żeby odwrócić kolejność."
+				},
+				{
+					"type": "h",
 					"text": "Co znaczą statusy"
 				},
 				{
 					"type": "p",
-					"text": "**Oczekujące na płatność**: klient złożył zamówienie, ale nie dokończył płatności online. Nic nie wysyłaj."
+					"text": "**Oczekujące na płatność**: klient złożył zamówienie, ale nie dokończył płatności online. Nic nie wysyłaj. Towar jest w tym czasie zarezerwowany dla tego zamówienia."
 				},
 				{
 					"type": "p",
-					"text": "**Nieudane**: płatność online została odrzucona albo przerwana. Nic nie wysyłaj; klient może spróbować zapłacić jeszcze raz."
+					"text": "**Nieudane**: płatność online została odrzucona albo przerwana. Nic nie wysyłaj; klient może spróbować zapłacić jeszcze raz. Jeśli stan magazynowy był zmniejszony, towar wraca na stan."
 				},
 				{
 					"type": "p",
-					"text": "**Wstrzymane (oczekujące na płatność)**: sklep czeka na wpłatę, najczęściej zwykłym przelewem. Gdy pieniądze dotrą na konto, sam zmieniasz status na „W trakcie realizacji”."
+					"text": "**Wstrzymane (oczekujące na płatność)**: sklep czeka na wpłatę, najczęściej zwykłym przelewem. Stan magazynowy jest już zmniejszony. Gdy pieniądze dotrą na konto, sam zmieniasz status na „W trakcie realizacji”."
 				},
 				{
 					"type": "p",
-					"text": "**W trakcie realizacji**: zamówienie jest opłacone (albo płatne przy odbiorze) i czeka na spakowanie i wysyłkę."
+					"text": "**W trakcie realizacji**: zamówienie jest opłacone (albo płatne przy odbiorze) i czeka na spakowanie i wysyłkę. Stan magazynowy jest zmniejszony. Po wysyłce sam zmieniasz status na „Zrealizowane”."
 				},
 				{
 					"type": "p",
@@ -143,11 +180,19 @@
 				},
 				{
 					"type": "p",
-					"text": "**Anulowano**: zamówienie odwołane przez Ciebie albo klienta. Sklep sam anuluje też zamówienia, za które nikt nie zapłacił w wyznaczonym czasie."
+					"text": "**Anulowano**: zamówienie odwołane przez Ciebie albo klienta. Towar wraca na stan. Sklep sam anuluje też zamówienia „Oczekujące na płatność”, za które nikt nie zapłacił w czasie ustawionym w polu **Wstrzymuj stan magazynowy (w minutach)** (WooCommerce → Ustawienia → Produkty → Magazyn)."
 				},
 				{
 					"type": "p",
-					"text": "**Zwrócone**: klient dostał z powrotem całą kwotę."
+					"text": "**Zwrócone**: zamówienie zostało zwrócone w całości. Sam status nie oznacza jeszcze, że pieniądze wróciły do klienta; zależy to od sposobu zwrotu."
+				},
+				{
+					"type": "p",
+					"text": "**Szkic**: zamówienie rozpoczęte w kasie i niedokończone. Pojawia się tylko w osobnej zakładce „Szkic” nad tabelą. Nic z nim nie rób; sklep sam usuwa stare szkice."
+				},
+				{
+					"type": "note",
+					"text": "**Dobrze wiedzieć:** po najechaniu kursorem na etykietę statusu pojawia się dymek z krótkim opisem tego statusu."
 				},
 				{
 					"type": "h",
@@ -176,21 +221,33 @@
 				},
 				{
 					"type": "step",
-					"text": "W okienku zobaczysz adres, sposób płatności i kupione produkty. Przycisk **Edytuj** otwiera pełny ekran zamówienia, a krzyżyk zamyka podgląd.",
+					"text": "W okienku zobaczysz adres, telefon, sposób płatności i kupione produkty.",
 					"image": "zamowienia-podglad.webp",
-					"alt": "Okienko podglądu zamówienia z danymi klienta, sposobem płatności, listą produktów i przyciskiem Edytuj",
+					"alt": "Okienko podglądu zamówienia w trakcie realizacji z danymi klienta, listą produktów oraz przyciskami Zrealizowano i Edytuj",
 					"width": 560
+				},
+				{
+					"type": "step",
+					"text": "Przy zamówieniu „W trakcie realizacji” na dole okienka jest przycisk **Zrealizowano**: zmienia status bez otwierania zamówienia. Przy zamówieniu „Wstrzymanym” są przyciski **W trakcie realizacji** i **Zrealizowano**."
+				},
+				{
+					"type": "step",
+					"text": "Przycisk **Edytuj** otwiera pełny ekran zamówienia, a krzyżyk zamyka podgląd."
 				}
 			],
 			"keywords": [
 				"zamówienie",
 				"status",
 				"kolumny",
+				"sortowanie",
 				"w trakcie realizacji",
 				"wstrzymane",
 				"anulowane",
 				"zwrot",
-				"podgląd"
+				"szkic",
+				"magazyn",
+				"podgląd",
+				"opcje ekranu"
 			],
 			"links": [
 				{
@@ -198,6 +255,148 @@
 					"path": "admin.php?page=wc-orders",
 					"cap": "edit_shop_orders"
 				}
+			],
+			"related": [
+				"szukanie-zamowien"
+			]
+		},
+		{
+			"id": "szukanie-zamowien",
+			"category": "zamowienia",
+			"title": "Jak znaleźć zamówienie: wyszukiwarka i filtry",
+			"text": "Zamówienie na liście znajdziesz na dwa sposoby. Wyszukiwarka szuka po numerze, nazwisku, adresie e-mail, telefonie, adresie albo nazwie produktu. Filtry pokazują zamówienia z wybranego miesiąca, kanału sprzedaży albo jednego klienta.",
+			"body": [
+				{
+					"type": "h",
+					"text": "Jak wyszukać zamówienie"
+				},
+				{
+					"type": "step",
+					"text": "Wejdź w **WooCommerce → Zamówienia**."
+				},
+				{
+					"type": "step",
+					"text": "W polu nad tabelą, po prawej stronie, wpisz numer zamówienia, nazwisko, adres e-mail, telefon, miasto albo nazwę produktu.",
+					"image": "szukanie-pole.webp",
+					"alt": "Pole wyszukiwania nad tabelą zamówień, obok niego lista z wybraną pozycją Wszystko i przycisk Szukaj zamówień",
+					"width": 660
+				},
+				{
+					"type": "step",
+					"text": "Kliknij **Szukaj zamówień** albo naciśnij Enter."
+				},
+				{
+					"type": "step",
+					"text": "Obok nagłówka pojawi się napis „Wyniki wyszukiwania dla: …”, a w tabeli zostaną tylko pasujące zamówienia.",
+					"image": "szukanie-wynik.webp",
+					"alt": "Lista zamówień po wyszukaniu nazwiska Nowak: napis Wyniki wyszukiwania dla: Nowak i dwa zamówienia w tabeli"
+				},
+				{
+					"type": "note",
+					"text": "**Dobrze wiedzieć:** numer zamówienia wpisuj bez znaku #. Wielkość liter nie ma znaczenia. Wystarczy fragment, np. samo nazwisko albo początek adresu e-mail."
+				},
+				{
+					"type": "h",
+					"text": "Jak zawęzić wyszukiwanie"
+				},
+				{
+					"type": "p",
+					"text": "Lista obok pola wyszukiwania ma domyślnie ustawioną pozycję **Wszystko**. Pozostałe pozycje ograniczają szukanie do jednego rodzaju danych. Przydają się, gdy wyników jest za dużo."
+				},
+				{
+					"type": "p",
+					"text": "**Identyfikator zamówienia**: wewnętrzny numer zamówienia w bazie sklepu. Zwykle jest taki sam jak numer zamówienia. Jeśli sklep ma własną numerację zamówień, te numery się różnią; wtedy numeru zamówienia szukaj z pozycją „Wszystko”."
+				},
+				{
+					"type": "p",
+					"text": "**Adres e-mail klienta**: adres podany w zamówieniu."
+				},
+				{
+					"type": "p",
+					"text": "**Klienci**: imię, nazwisko i adres klienta."
+				},
+				{
+					"type": "p",
+					"text": "**Produkty**: nazwa kupionego produktu."
+				},
+				{
+					"type": "h",
+					"text": "Gdy nic nie znaleziono"
+				},
+				{
+					"type": "image",
+					"image": "szukanie-brak-wynikow.webp",
+					"alt": "Pusta tabela zamówień z napisem Nie znaleziono żadnego elementu"
+				},
+				{
+					"type": "p",
+					"text": "W tabeli pojawia się napis „Nie znaleziono żadnego elementu.”. Sprawdź pisownię, usuń znak # sprzed numeru i ustaw listę obok pola na **Wszystko**."
+				},
+				{
+					"type": "h",
+					"text": "Filtry"
+				},
+				{
+					"type": "image",
+					"image": "szukanie-filtry.webp",
+					"alt": "Wiersz nad tabelą zamówień z listami Wszystkie daty, Wszystkie kanały sprzedaży, polem Filtruj wg zarejestrowanego klienta i przyciskiem Filtruj"
+				},
+				{
+					"type": "p",
+					"text": "Pod wyszukiwarką są trzy filtry. Można ustawić jeden albo kilka naraz."
+				},
+				{
+					"type": "p",
+					"text": "**Wszystkie daty**: zamówienia z wybranego miesiąca."
+				},
+				{
+					"type": "p",
+					"text": "**Wszystkie kanały sprzedaży**: sposób, w jaki powstało zamówienie. „Zamówienie” to zamówienia złożone przez klientów w sklepie, „Admin” to zamówienia dodane ręcznie w kokpicie, a „Punkt sprzedaży” to sprzedaż stacjonarna, jeśli sklep z niej korzysta."
+				},
+				{
+					"type": "p",
+					"text": "**Filtruj wg zarejestrowanego klienta**: zamówienia jednego klienta, który ma konto w sklepie. Zacznij wpisywać nazwisko albo adres e-mail i wybierz klienta z listy. Zamówień złożonych bez konta ten filtr nie pokaże; szukaj ich wyszukiwarką."
+				},
+				{
+					"type": "step",
+					"text": "Ustaw jeden albo kilka filtrów."
+				},
+				{
+					"type": "step",
+					"text": "Kliknij **Filtruj**. W tabeli zostaną zamówienia, które spełniają wszystkie ustawione warunki.",
+					"image": "szukanie-filtry-wynik.webp",
+					"alt": "Lista zamówień po ustawieniu filtrów: miesiąc listopad 2026 i kanał sprzedaży Zamówienie"
+				},
+				{
+					"type": "h",
+					"text": "Jak wrócić do pełnej listy"
+				},
+				{
+					"type": "step",
+					"text": "Kliknij **Wszystko** w wierszu statusów nad tabelą. Wyszukiwanie i filtry zostaną wyłączone."
+				}
+			],
+			"keywords": [
+				"szukaj",
+				"wyszukiwarka",
+				"filtr",
+				"numer zamówienia",
+				"klient",
+				"e-mail",
+				"telefon",
+				"data",
+				"miesiąc",
+				"kanał sprzedaży"
+			],
+			"links": [
+				{
+					"text": "WooCommerce → Zamówienia",
+					"path": "admin.php?page=wc-orders",
+					"cap": "edit_shop_orders"
+				}
+			],
+			"related": [
+				"lista-zamowien"
 			]
 		}
 	]
