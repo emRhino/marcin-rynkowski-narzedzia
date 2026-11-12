@@ -152,7 +152,7 @@
 				},
 				{
 					"type": "p",
-					"text": "**Produkty**: produkty, ich kategorie, tagi i atrybuty."
+					"text": "**Produkty**: produkty, ich kategorie, znaczniki i atrybuty."
 				},
 				{
 					"type": "p",
@@ -1196,6 +1196,221 @@
 				"od-wplaty-do-wysylki",
 				"lista-zamowien",
 				"ekran-zamowienia"
+			]
+		},
+		{
+			"id": "typy-produktow",
+			"category": "produkty",
+			"title": "Typy produktów: który wybrać",
+			"text": "WooCommerce ma cztery typy produktów: prosty, z wariantami, grupowy i zewnętrzny. Typ decyduje o tym, jakie pola ma produkt w kokpicie i w jaki sposób klient go kupuje. Dwa dodatkowe pola wyboru oznaczają produkt jako wirtualny albo do pobrania.",
+			"body": [
+				{
+					"type": "h",
+					"text": "Gdzie wybiera się typ produktu"
+				},
+				{
+					"type": "step",
+					"text": "Wejdź w **Produkty → Utwórz produkt** albo otwórz istniejący produkt."
+				},
+				{
+					"type": "step",
+					"text": "W panelu **Dane produktu** rozwiń listę obok nazwy panelu i wybierz typ. Po zmianie typu zmieniają się zakładki po lewej stronie panelu.",
+					"image": "typy-lista-typow.webp",
+					"alt": "Panel Dane produktu z zaznaczoną listą typów, na której wybrany jest Prosty produkt; obok pola Wirtualny i Do pobrania"
+				},
+				{
+					"type": "h",
+					"text": "Prosty produkt"
+				},
+				{
+					"type": "p",
+					"text": "Jedna rzecz w jednej wersji, z jedną ceną. Tego typu jest większość produktów w sklepie."
+				},
+				{
+					"type": "p",
+					"text": "W kokpicie ma zakładki **Ogólne** (cena), **Magazyn**, **Wysyłka**, **Powiązane produkty**, **Atrybuty** i **Zaawansowane**."
+				},
+				{
+					"type": "p",
+					"text": "Klient widzi cenę i przycisk dodania do koszyka."
+				},
+				{
+					"type": "image",
+					"image": "typy-prosty-sklep.webp",
+					"alt": "Strona produktu prostego w sklepie: nazwa, cena i przycisk Dodaj do koszyka",
+					"width": 420
+				},
+				{
+					"type": "h",
+					"text": "Produkt z wariantami"
+				},
+				{
+					"type": "p",
+					"text": "Ten sam produkt w kilku wersjach, np. w różnych kolorach albo rozmiarach. Każdy wariant może mieć własną cenę, zdjęcie, SKU i stan magazynowy."
+				},
+				{
+					"type": "p",
+					"text": "Wymaga dwóch rzeczy: atrybutu z listą wartości (np. „Kolor szkliwa”: biały, szałwia, grafit) w zakładce **Atrybuty** oraz wariantów utworzonych z tych wartości w zakładce **Warianty**. Zakładki „Ogólne” z ceną tu nie ma, bo ceny ustawia się w wariantach."
+				},
+				{
+					"type": "image",
+					"image": "typy-warianty-panel.webp",
+					"alt": "Panel Dane produktu dla produktu z wariantami, otwarta zakładka Warianty z trzema wariantami kolorów"
+				},
+				{
+					"type": "p",
+					"text": "Klient najpierw wybiera wersję, a dopiero potem dodaje produkt do koszyka."
+				},
+				{
+					"type": "image",
+					"image": "typy-warianty-sklep.webp",
+					"alt": "Strona produktu z wariantami w sklepie: wybór koloru szkliwa nad przyciskiem dodania do koszyka",
+					"width": 420
+				},
+				{
+					"type": "h",
+					"text": "Produkt grupowy"
+				},
+				{
+					"type": "p",
+					"text": "Strona, która zbiera kilka istniejących produktów w jednym miejscu, np. elementy jednej serii. Produkt grupowy nie ma własnej ceny ani stanu magazynowego."
+				},
+				{
+					"type": "p",
+					"text": "Elementy grupy dodaje się w zakładce **Powiązane produkty**, w polu **Produkty grupowe**. Wpisuje się tam nazwy produktów, które już są w sklepie."
+				},
+				{
+					"type": "image",
+					"image": "typy-grupowy-panel.webp",
+					"alt": "Panel Dane produktu dla produktu grupowego, zakładka Powiązane produkty z zaznaczonym polem Produkty grupowe i trzema produktami"
+				},
+				{
+					"type": "p",
+					"text": "Klient widzi listę elementów z cenami. Przy każdym ustawia liczbę sztuk i jednym przyciskiem dodaje wybrane do koszyka. Cena grupy jest pokazana jako zakres od najtańszego do najdroższego elementu."
+				},
+				{
+					"type": "image",
+					"image": "typy-grupowy-sklep.webp",
+					"alt": "Strona produktu grupowego w sklepie: zakres cen, lista trzech produktów z polami ilości i przycisk Dodaj do koszyka",
+					"width": 420
+				},
+				{
+					"type": "p",
+					"text": "Elementy grupy pozostają osobnymi produktami: mają własne strony, ceny i stany magazynowe."
+				},
+				{
+					"type": "h",
+					"text": "Produkt zewnętrzny/afiliacyjny"
+				},
+				{
+					"type": "p",
+					"text": "Produkt, który jest pokazany w sklepie, ale sprzedaje go inna strona. Sklep nie przyjmuje za niego zamówienia ani płatności."
+				},
+				{
+					"type": "p",
+					"text": "W zakładce **Ogólne** ma dwa dodatkowe pola: **Adres URL produktu**, czyli adres strony, na której można go kupić, oraz **Tekst przycisku**. Zakładki „Wysyłka” nie ma."
+				},
+				{
+					"type": "image",
+					"image": "typy-zewnetrzny-panel.webp",
+					"alt": "Panel Dane produktu dla produktu zewnętrznego z zaznaczonymi polami Adres URL produktu i Tekst przycisku"
+				},
+				{
+					"type": "p",
+					"text": "Klient zamiast przycisku dodania do koszyka widzi przycisk z wpisanym tekstem. Kliknięcie przenosi go na podany adres."
+				},
+				{
+					"type": "image",
+					"image": "typy-zewnetrzny-sklep.webp",
+					"alt": "Strona produktu zewnętrznego w sklepie: cena i przycisk z własnym tekstem Kup w sklepie pracowni",
+					"width": 420
+				},
+				{
+					"type": "h",
+					"text": "Wirtualny i Do pobrania"
+				},
+				{
+					"type": "image",
+					"image": "typy-wirtualny-do-pobrania.webp",
+					"alt": "Nagłówek panelu Dane produktu z zaznaczonymi polami wyboru Wirtualny i Do pobrania"
+				},
+				{
+					"type": "p",
+					"text": "Te dwa pola wyboru są obok listy typów przy produkcie prostym. Można zaznaczyć jedno albo oba."
+				},
+				{
+					"type": "p",
+					"text": "**Wirtualny**: produkt, którego się nie wysyła, np. usługa albo rezerwacja. Znika zakładka „Wysyłka”, a w koszyku nie jest naliczany koszt dostawy."
+				},
+				{
+					"type": "p",
+					"text": "**Do pobrania**: produkt, do którego klient dostaje plik. Pojawiają się pola **Pliki do pobrania**, **Limit pobrań** i **Ważność wygaśnięcia pobierania**. Sam ten znacznik nie wyłącza wysyłki; plik bez wysyłki wymaga zaznaczenia także „Wirtualny”."
+				},
+				{
+					"type": "p",
+					"text": "Zamówienie, w którym są wyłącznie produkty jednocześnie wirtualne i do pobrania, po opłaceniu od razu dostaje status „Zrealizowane”."
+				},
+				{
+					"type": "p",
+					"text": "W produkcie z wariantami te pola zaznacza się osobno w każdym wariancie."
+				},
+				{
+					"type": "h",
+					"text": "Który typ wybrać"
+				},
+				{
+					"type": "p",
+					"text": "Rzecz w jednej wersji: **Prosty produkt**."
+				},
+				{
+					"type": "p",
+					"text": "Ta sama rzecz w kilku kolorach, rozmiarach albo pojemnościach: **Produkt z wariantami**."
+				},
+				{
+					"type": "p",
+					"text": "Kilka istniejących produktów pokazanych razem na jednej stronie: **Produkt grupowy**."
+				},
+				{
+					"type": "p",
+					"text": "Rzecz sprzedawana na innej stronie: **Produkt zewnętrzny/afiliacyjny**."
+				},
+				{
+					"type": "p",
+					"text": "Usługa albo plik: **Prosty produkt** z zaznaczonym „Wirtualny” albo „Do pobrania”."
+				},
+				{
+					"type": "note",
+					"text": "**Dobrze wiedzieć:** inne wtyczki dodają do listy własne typy, np. kartę podarunkową, oraz własne zakładki w panelu **Dane produktu**. W Twoim sklepie lista typów i zakładek może być dłuższa niż na wycinkach."
+				}
+			],
+			"keywords": [
+				"typ produktu",
+				"prosty",
+				"warianty",
+				"wariantowy",
+				"grupowy",
+				"zewnętrzny",
+				"afiliacyjny",
+				"wirtualny",
+				"do pobrania",
+				"plik",
+				"usługa",
+				"dane produktu"
+			],
+			"links": [
+				{
+					"text": "Produkty → Utwórz produkt",
+					"path": "post-new.php?post_type=product",
+					"cap": "edit_products"
+				},
+				{
+					"text": "Produkty → Wszystkie produkty",
+					"path": "edit.php?post_type=product",
+					"cap": "edit_products"
+				}
+			],
+			"related": [
+				"kokpit"
 			]
 		}
 	]
