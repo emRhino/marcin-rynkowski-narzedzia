@@ -1,0 +1,204 @@
+{
+	"intro": {
+		"text": "",
+		"video": ""
+	},
+	"categories": [
+		{
+			"id": "zamowienia",
+			"title": "Zamówienia"
+		},
+		{
+			"id": "produkty",
+			"title": "Produkty"
+		},
+		{
+			"id": "kupony",
+			"title": "Kupony"
+		},
+		{
+			"id": "klienci",
+			"title": "Klienci i opinie"
+		},
+		{
+			"id": "wysylka",
+			"title": "Wysyłka"
+		},
+		{
+			"id": "platnosci",
+			"title": "Płatności i podatki"
+		},
+		{
+			"id": "maile",
+			"title": "Maile sklepu"
+		},
+		{
+			"id": "raporty",
+			"title": "Raporty"
+		},
+		{
+			"id": "ustawienia-sklepu",
+			"title": "Ustawienia sklepu"
+		}
+	],
+	"lessons": [
+		{
+			"id": "lista-zamowien",
+			"category": "zamowienia",
+			"title": "Lista zamówień: kolumny i statusy",
+			"text": "Lista zamówień pokazuje wszystkie zamówienia sklepu: numer, klienta, datę, kwotę i etap, na którym jest zamówienie.",
+			"body": [
+				{
+					"type": "h",
+					"text": "Gdzie jest lista zamówień"
+				},
+				{
+					"type": "step",
+					"text": "W menu po lewej stronie kokpitu kliknij **WooCommerce**.",
+					"image": "zamowienia-menu.webp",
+					"alt": "Menu WooCommerce w kokpicie z pozycją Zamówienia i liczbą 2 obok niej",
+					"width": 270
+				},
+				{
+					"type": "step",
+					"text": "Kliknij **Zamówienia**. Liczba w kółku obok tej pozycji mówi, ile zamówień czeka na wysyłkę (status „W trakcie realizacji”)."
+				},
+				{
+					"type": "h",
+					"text": "Co pokazują kolumny"
+				},
+				{
+					"type": "image",
+					"image": "zamowienia-lista.webp",
+					"alt": "Tabela zamówień z kolumnami Zamówienie, Data, Status, Łącznie i Pochodzenie; każde zamówienie ma kolorową etykietę statusu"
+				},
+				{
+					"type": "p",
+					"text": "**Zamówienie** to numer i nazwisko klienta. Kliknięcie otwiera ekran zamówienia ze wszystkimi szczegółami."
+				},
+				{
+					"type": "p",
+					"text": "**Data** to dzień złożenia zamówienia. Przy zamówieniach z ostatniej doby zobaczysz zamiast daty np. „3 minuty temu”."
+				},
+				{
+					"type": "p",
+					"text": "**Status** mówi, na jakim etapie jest zamówienie. Każdy status ma etykietę w innym kolorze."
+				},
+				{
+					"type": "p",
+					"text": "**Łącznie** to kwota do zapłaty razem z dostawą. Przekreślona kwota oznacza, że pieniądze zostały zwrócone klientowi."
+				},
+				{
+					"type": "p",
+					"text": "**Pochodzenie** pokazuje, skąd klient trafił do sklepu, np. z wyszukiwarki albo po wpisaniu adresu („Bezpośrednie”). „Nieznane” znaczy, że sklep nie zdołał tego ustalić."
+				},
+				{
+					"type": "note",
+					"text": "**Dobrze wiedzieć:** w Twoim sklepie kolumn może być więcej, bo dodają je inne wtyczki (np. firm kurierskich)."
+				},
+				{
+					"type": "h",
+					"text": "Jak włączyć albo wyłączyć kolumny"
+				},
+				{
+					"type": "step",
+					"text": "W prawym górnym rogu ekranu kliknij ikonę koła zębatego (**Opcje ekranu**).",
+					"image": "zamowienia-ikona-opcji-ekranu.webp",
+					"alt": "Trzy ikony w prawym górnym rogu ekranu zamówień; środkowa, koło zębate, otwiera opcje ekranu",
+					"width": 198
+				},
+				{
+					"type": "step",
+					"text": "W części **Kolumny** zaznacz te, które mają być widoczne w tabeli, i odznacz pozostałe.",
+					"image": "zamowienia-opcje-ekranu.webp",
+					"alt": "Rozwinięty panel opcji ekranu z polami wyboru kolumn, liczbą elementów na stronę i przyciskiem Zastosuj"
+				},
+				{
+					"type": "step",
+					"text": "Kliknij **Zastosuj**. W tym samym panelu ustawisz też, ile zamówień mieści się na jednej stronie listy."
+				},
+				{
+					"type": "h",
+					"text": "Co znaczą statusy"
+				},
+				{
+					"type": "p",
+					"text": "**Oczekujące na płatność**: klient złożył zamówienie, ale nie dokończył płatności online. Nic nie wysyłaj."
+				},
+				{
+					"type": "p",
+					"text": "**Nieudane**: płatność online została odrzucona albo przerwana. Nic nie wysyłaj; klient może spróbować zapłacić jeszcze raz."
+				},
+				{
+					"type": "p",
+					"text": "**Wstrzymane (oczekujące na płatność)**: sklep czeka na wpłatę, najczęściej zwykłym przelewem. Gdy pieniądze dotrą na konto, sam zmieniasz status na „W trakcie realizacji”."
+				},
+				{
+					"type": "p",
+					"text": "**W trakcie realizacji**: zamówienie jest opłacone (albo płatne przy odbiorze) i czeka na spakowanie i wysyłkę."
+				},
+				{
+					"type": "p",
+					"text": "**Zrealizowane**: zamówienie zostało wysłane i jest zakończone."
+				},
+				{
+					"type": "p",
+					"text": "**Anulowano**: zamówienie odwołane przez Ciebie albo klienta. Sklep sam anuluje też zamówienia, za które nikt nie zapłacił w wyznaczonym czasie."
+				},
+				{
+					"type": "p",
+					"text": "**Zwrócone**: klient dostał z powrotem całą kwotę."
+				},
+				{
+					"type": "h",
+					"text": "Jak pokazać tylko wybrany status"
+				},
+				{
+					"type": "step",
+					"text": "Nad tabelą kliknij nazwę statusu, np. **W trakcie realizacji**. Liczba w nawiasie mówi, ile jest takich zamówień.",
+					"image": "zamowienia-filtr-statusow.webp",
+					"alt": "Wiersz nad tabelą z nazwami statusów i liczbą zamówień w każdym z nich"
+				},
+				{
+					"type": "step",
+					"text": "Żeby wrócić do pełnej listy, kliknij **Wszystko**."
+				},
+				{
+					"type": "h",
+					"text": "Szybki podgląd bez otwierania zamówienia"
+				},
+				{
+					"type": "step",
+					"text": "Kliknij ikonę oka obok nazwiska klienta.",
+					"image": "zamowienia-ikona-podgladu.webp",
+					"alt": "Ikona oka w wierszu zamówienia, między nazwiskiem klienta a datą",
+					"width": 268
+				},
+				{
+					"type": "step",
+					"text": "W okienku zobaczysz adres, sposób płatności i kupione produkty. Przycisk **Edytuj** otwiera pełny ekran zamówienia, a krzyżyk zamyka podgląd.",
+					"image": "zamowienia-podglad.webp",
+					"alt": "Okienko podglądu zamówienia z danymi klienta, sposobem płatności, listą produktów i przyciskiem Edytuj",
+					"width": 560
+				}
+			],
+			"keywords": [
+				"zamówienie",
+				"status",
+				"kolumny",
+				"w trakcie realizacji",
+				"wstrzymane",
+				"anulowane",
+				"zwrot",
+				"podgląd"
+			],
+			"links": [
+				{
+					"text": "WooCommerce → Zamówienia",
+					"path": "admin.php?page=wc-orders",
+					"cap": "edit_shop_orders"
+				}
+			]
+		}
+	]
+}
